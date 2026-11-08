@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>一个上海人的一生，每年要花多少钱</title>
+<style>
+:root{
+  --paper:#FCFAF6;
+  --ink:#191817;
+  --ink-2:#3A362F;
+  --muted:#6F6A62;
+  --muted-2:#8C867C;
+  --rule:#E4DFD5;
+  --rule-2:#CFC9BE;
+  --wash:#F2EEE6;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC","Source Han Serif CN","SimSun","STSong",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.78;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.page{max-width:none;margin:0;padding:0 clamp(20px,3.2vw,48px) 88px}
+@media (min-width:1800px){.page{padding-left:clamp(48px,5vw,150px);padding-right:clamp(48px,5vw,150px)}}
+/* 1500px 以上：标题块与导语并排，右半边不再空着（1920 / 1536 都吃这条）；
+   1440 及以下仍是单列，保持已确认的版面 */
+@media (min-width:1500px){
+  .masthead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:auto auto auto;
+            column-gap:clamp(56px,4vw,120px)}
+  .masthead .kicker{grid-column:1;grid-row:1}
+  .masthead h1{grid-column:1;grid-row:2}
+  .masthead .dek{grid-column:1;grid-row:3;margin-bottom:0}
+  .masthead .lede{grid-column:2;grid-row:2;align-self:end;margin:0 0 10px;max-width:100%}
+  .masthead .verdict{grid-column:2;grid-row:3;align-self:end;max-width:100%}
+}
+
+/* ---------- masthead ---------- */
+.masthead{padding:56px 0 30px;border-top:2px solid var(--ink)}
+.kicker{display:flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.16em;color:var(--muted);margin:0 0 26px}
+.kicker .sep{width:3px;height:3px;border-radius:50%;background:var(--muted-2);display:inline-block}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,6.2vw,88px);line-height:1.14;letter-spacing:.004em;margin:0 0 20px;text-wrap:balance}
+.dek{font-size:16px;color:var(--muted);margin:0 0 24px;letter-spacing:.01em}
+.lede{font-family:var(--serif);font-size:21px;line-height:1.8;color:#2B2823;max-width:34em;margin:0}
+.verdict{font-family:var(--serif);font-size:18.5px;line-height:1.68;color:var(--ink);max-width:34em;
+  margin:26px 0 0;padding:3px 0 3px 15px;border-left:2px solid var(--ink);text-wrap:pretty}
+.verdict .am{font-variant-numeric:tabular-nums}
+
+/* ---------- stat strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin:38px 0 0}
+.stats.three{grid-template-columns:repeat(3,1fr)}
+.stats .stat[hidden]{display:none}
+.stat{padding:17px 20px 19px;border-left:1px solid var(--rule)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat .lb{display:block;font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.stat .vv{font-family:var(--serif);font-size:34px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stat .vv .u{font-family:var(--sans);font-size:12px;color:var(--muted);margin-left:4px;letter-spacing:0}
+.stat .sub{font-size:11.5px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+
+/* ---------- controls ---------- */
+.adv{margin-top:30px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.adv summary{list-style:none;cursor:pointer;padding:11px 0;font-size:12.5px;letter-spacing:.04em;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.adv summary::-webkit-details-marker{display:none}
+.adv summary .pm{font-size:14px;line-height:1}
+.adv[open] summary .pm{transform:rotate(45deg)}
+.adv .controls{margin-top:0;border-top:1px dotted var(--rule-2);border-bottom:0}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:12px 0;margin-top:30px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:12.5px}
+.ctl{display:flex;align-items:center;gap:9px}
+.ctl[hidden]{display:none}
+.ctl-row[hidden]{display:none}
+.ctl-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;width:100%}
+.ctl-row > .sens-lb{flex:0 0 auto}
+.ctl-row + .ctl-row{margin-top:9px;padding-top:9px;border-top:1px dotted var(--rule-2)}
+.sens-lb{font-size:10px;letter-spacing:.16em;color:var(--muted-2);text-transform:uppercase}
+.glide-line{flex:1 1 100%;margin:8px 0 0;padding-top:7px;border-top:1px dotted var(--rule-2);font-size:10.5px;line-height:1.55;color:#5E594F;font-variant-numeric:tabular-nums}
+.glide-line b{color:var(--ink);font-weight:600}
+.glide-line .cur{color:var(--ink);font-weight:700}
+.sens-note{font-size:11.5px;color:var(--muted-2);letter-spacing:.02em}
+.ctl-lb{font-size:11.5px;letter-spacing:.08em;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--rule-2);border-radius:1px;overflow:hidden;background:#fff}
+.seg button{border:0;border-left:1px solid var(--rule-2);background:transparent;padding:5px 13px;font:inherit;font-size:12.5px;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
+.seg button:first-child{border-left:0}
+.seg button:hover{color:var(--ink);background:var(--wash)}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.seg button.on:hover{background:var(--ink);color:var(--paper)}
+button:focus-visible,.ghost:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.seg button:focus-visible{outline-offset:-3px}
+
+.sw{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.sw input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.sw .tr{position:relative;width:30px;height:16px;border:1px solid var(--rule-2);border-radius:9px;background:#fff;transition:background .2s,border-color .2s}
+.sw .tr::after{content:"";position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:var(--muted-2);transition:transform .2s,background .2s}
+.sw input:checked + .tr{background:var(--ink);border-color:var(--ink)}
+.sw input:checked + .tr::after{transform:translateX(14px);background:var(--paper)}
+.sw input:focus-visible + .tr{outline:2px solid var(--ink);outline-offset:2px}
+
+.ghost{margin-left:auto;border:1px solid var(--rule-2);background:#fff;border-radius:1px;padding:5px 12px;font:inherit;font-size:12.5px;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.ghost:hover{border-color:var(--ink)}
+.ghost.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------- chart ---------- */
+.chart-wrap{position:relative;margin-top:14px;overflow-x:auto;overflow-y:hidden}
+svg.chart{display:block;overflow:hidden;font-family:var(--sans)}
+.grid{stroke:#E8E3D9;stroke-width:1;shape-rendering:crispEdges}
+.grid.zero{stroke:#B9B3A8}
+.ylab,.xlab{font-size:calc(11px * var(--k,1));fill:var(--muted-2);font-variant-numeric:tabular-nums}
+.ylab.unit{fill:var(--muted);font-size:calc(10.5px * var(--k,1));letter-spacing:.08em}
+.xlab{transition:fill .12s}
+.xlab.on{fill:var(--ink);font-weight:700}
+.seg-rect{shape-rendering:crispEdges}
+.bar{cursor:pointer;outline:none}
+.ann-t{font-size:calc(11px * var(--k,1));fill:#4E4941;letter-spacing:.005em}
+.ann-line{fill:none;stroke:#B8B1A5;stroke-width:1}
+.ann-line.key{stroke:#3B3733;stroke-width:1.25}
+.ann-t.key{fill:#191817;font-weight:600}
+.ann-s{font-size:calc(9.5px * var(--k,1));fill:#6E675C;letter-spacing:.01em}
+.ann-tip{fill:#191817;opacity:.92}
+.ann-tip.down{fill:none;stroke:#191817;stroke-width:1.2;opacity:1}
+.rib-t{font-size:calc(10.5px * var(--k,1));fill:#5E594F;letter-spacing:.02em}
+.rib-t.on{fill:var(--ink);font-weight:700}
+.solo-t{font-size:calc(11px * var(--k,1));fill:var(--ink);font-weight:600;paint-order:stroke fill;stroke:var(--paper);stroke-width:3.2px;stroke-linejoin:round}
+
+/* ---------- tooltip ---------- */
+.tip{position:absolute;top:4px;left:0;width:284px;background:#fff;border:1px solid #D5CFC4;border-top:2px solid var(--ink);padding:11px 13px 10px;z-index:6;pointer-events:none;opacity:0;transition:opacity .1s}
+.tip.show{opacity:1}
+.tip-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.tip-age{font-family:var(--serif);font-size:21px;line-height:1.1}
+.tip-tot{font-family:var(--serif);font-size:19px;font-variant-numeric:tabular-nums;line-height:1.1}
+.tip-tot .u{font-family:var(--sans);font-size:10.5px;color:var(--muted);margin-left:3px}
+.tip-sub{font-size:10.5px;color:var(--muted);margin:3px 0 8px;letter-spacing:.02em}
+.tip-rows{display:grid;gap:1px}
+.tr-row{display:grid;grid-template-columns:8px 1fr auto 42px;align-items:center;gap:7px;padding:2px 0;font-size:11.5px;font-variant-numeric:tabular-nums}
+.tr-row .sq{width:8px;height:8px;border-radius:.5px}
+.tr-row .nm{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr-row .vl{font-weight:600;text-align:right}
+.tr-row .pc{color:var(--muted);text-align:right;font-size:10.5px}
+
+/* ---------- legend + card ---------- */
+.under{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,25vw,400px);gap:10px 48px;margin-top:14px;align-items:start}
+.under-main{min-width:0}
+.legend{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 18px;margin-top:4px}
+.lg{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;padding:5px 8px;border-radius:1px;font:inherit;font-size:12.5px;color:var(--ink);cursor:pointer;transition:background .15s,opacity .15s}
+.lg:hover{background:var(--wash)}
+.lg .sq{width:9px;height:9px;border-radius:.5px;flex:none}
+.lg.solo{background:var(--ink);color:var(--paper)}
+.lg.dim{opacity:.45}
+.legend-note{font-size:12px;color:var(--muted-2);font-family:var(--sans);line-height:1.6;margin:8px 0 0;padding-left:8px}
+
+.card{border:1px solid var(--rule-2);background:#fff;padding:16px 16px 14px;min-height:0;align-self:start}
+.card.empty-card{padding:14px 16px}
+.hint-line{font-size:12.5px;color:var(--muted);line-height:1.7;margin:10px 0 0}
+.hint-line b{color:var(--ink);font-weight:600}
+.under.no-card{grid-template-columns:minmax(0,1fr)}
+.card[hidden]{display:none}
+.card .hint{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
+.figcap{font-size:12.5px;color:var(--muted);line-height:1.8;margin:10px 0 0;max-width:48em}
+.figcap b{font-weight:600;color:var(--ink)}
+.card .hint b{color:var(--ink);font-weight:600}
+.card-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.card-age{font-family:var(--serif);font-size:28px;line-height:1.1}
+.card-age .u{font-family:var(--sans);font-size:12px;color:var(--muted);margin-left:4px}
+.card-x{border:0;background:transparent;font:inherit;font-size:11px;color:var(--muted);cursor:pointer;padding:2px 0;border-bottom:1px solid var(--rule-2)}
+.card-x:hover{color:var(--ink);border-color:var(--ink)}
+.card-tot{font-family:var(--serif);font-size:26px;font-variant-numeric:tabular-nums;line-height:1.2;margin:8px 0 1px}
+.card-tot .u{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-left:4px}
+.card-sub{font-size:11px;color:var(--muted);letter-spacing:.02em;margin-bottom:10px}
+.card-rows{display:grid;gap:3px;border-top:1px solid var(--rule);padding-top:9px}
+.cr{display:grid;grid-template-columns:8px 1fr auto 40px;gap:7px;align-items:center;font-size:11.5px;font-variant-numeric:tabular-nums}
+.cr .sq{width:8px;height:8px;border-radius:.5px}
+.cr .nm{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr .vl{font-weight:600;text-align:right}
+.cr .pc{color:var(--muted);text-align:right;font-size:10.5px}
+.nav{display:flex;gap:6px;margin-top:11px;border-top:1px solid var(--rule);padding-top:9px}
+.nav button{border:0;background:transparent;font:inherit;font-size:11px;color:var(--muted);cursor:pointer;padding:2px 0}
+.nav button:hover{color:var(--ink)}
+.nav button:disabled{opacity:.3;cursor:default}
+
+/* ---------- table view ---------- */
+.tv{margin-top:16px;border-top:1px solid var(--ink);max-height:620px;overflow:auto;position:relative}
+.tv table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+.tv thead th{position:sticky;top:0;background:var(--paper);text-align:right;padding:9px 9px;border-bottom:1px solid var(--ink);font-weight:500;white-space:nowrap;z-index:2}
+.tv thead th:first-child{text-align:left;left:0;z-index:3}
+.tv tbody td{padding:5px 9px;text-align:right;border-bottom:1px solid #EFEAE1;white-space:nowrap}
+.tv tbody td:first-child{text-align:left;position:sticky;left:0;background:var(--paper);font-weight:500}
+.tv tbody tr:hover td{background:var(--wash)}
+.tv tbody tr.pin td{background:#EDE8DE}
+.tv-cap{font-size:11px;color:var(--muted-2);margin:10px 0 0}
+
+/* ---------- methodology ---------- */
+.method{margin-top:56px;border-top:1px solid var(--ink)}
+.method summary{list-style:none;cursor:pointer;padding:18px 0;font-size:15.5px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.method summary::-webkit-details-marker{display:none}
+.method summary .pm{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:400;transition:transform .2s}
+.method[open] summary .pm{transform:rotate(45deg)}
+.method-body{padding:0 0 10px;max-width:none;font-size:15px;line-height:1.9;color:#39352E;
+  columns:2 460px;column-gap:clamp(40px,4.5vw,84px);column-rule:1px solid var(--rule)}
+.method-body > *{break-inside:avoid;break-after:auto}
+.method-body h3{break-after:avoid}
+.method-body ul,.method-body ol{break-inside:auto}
+.method-body li{break-inside:avoid}
+.method-body p{margin:0 0 12px}
+.method-body h3{font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:var(--muted);font-weight:600;margin:26px 0 10px;text-transform:none}
+.method-body ol,.method-body ul{margin:0;padding-left:19px}
+.method-body ol li,.method-body ul li{margin:0 0 10px;padding-left:2px}
+.method-body b{color:var(--ink);font-weight:600}
+.mk-warn{background:#F6EFE4;border-left:2px solid var(--muted);padding:12px 16px;margin:0 0 18px;
+  font-size:13.5px;line-height:1.8;color:#2B2823}
+.mk-warn b{font-weight:600;color:var(--ink)}
+.mk{background:var(--wash);border-left:2px solid var(--ink);padding:12px 16px;margin:0 0 16px;font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--ink)}
+.cal{font-variant-numeric:tabular-nums;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;color:var(--ink-2)}
+.hh-warn{font-family:var(--sans);font-size:12.5px;line-height:1.7;color:var(--ink-2);margin:0 0 6px;max-width:1000px;
+  padding:10px 14px;background:#F6EFE4;border-left:2px solid var(--ink)}
+.hh-warn b{font-weight:600;color:var(--ink)}
+.hh-warn[hidden]{display:none}
+.glide-note{font-size:12.5px;line-height:1.75;color:var(--ink-2);border-left:2px solid var(--rule);
+  padding-left:12px;margin:2px 0 18px}
+@media print{.hh-warn{max-width:1100px}}
+.sources{list-style:none;padding:0;margin:0}
+.sources li{display:grid;grid-template-columns:20px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.7}
+.badge{width:18px;height:18px;border-radius:1px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:1px}
+.badge.A{background:#DCE7DD;color:#2F5D3E}
+.badge.B{background:#F1E4C6;color:#7A5A16}
+.badge.C{background:#E5E2DB;color:#6F6A62}
+.sources .sl{color:var(--ink)}
+.sources .su{color:var(--muted);font-size:11.5px;display:block;margin-top:1px}
+.sources a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule-2);font-size:11px;word-break:break-all}
+.sources a:hover{color:var(--ink);border-color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{margin-top:44px;border-top:1px solid var(--rule);padding:20px 0 0;font-size:11.5px;color:var(--muted);line-height:1.7;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between}
+
+/* ---------- motion / a11y ---------- */
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .under{grid-template-columns:1fr}
+  .card{grid-column:1;grid-row:auto;margin-top:14px}
+}
+@media (max-width:860px){
+  .page{padding:0 20px 60px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--rule)}
+  .stat .vv{font-size:28px}
+  .controls{gap:8px 16px}
+  .ghost{margin-left:0}
+}
+@media (max-width:620px){
+  .masthead{padding-top:36px}
+  .lede{font-size:17px}
+  .stats{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- print (A3 landscape) ---------- */
+@media print{
+  @page{size:A3 landscape;margin:10mm}
+  body{background:#fff;font-size:11px}
+  .page{max-width:none;padding:0 4mm 24px}
+  .legend{justify-content:flex-start;gap:0 22px}
+  .controls,.tv,.tv-cap{display:none !important}
+  .hint-line{display:none}
+  .masthead{padding-top:0}
+  h1{font-size:40px}
+  .card{min-height:0}
+  .chart-wrap{overflow:visible}
+  .under{grid-template-columns:minmax(0,1fr) 300px}
+  .method{break-before:page}
+  .method-body{max-width:none;font-size:10.5px;columns:2 420px;column-gap:14mm}
+  .tip{display:none !important}
+  .sw-t{font-size:calc(9.5px * var(--k,1));fill:#8A8375;letter-spacing:.02em}
+  .ann-t{font-size:10px}
+  a{color:inherit}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="kicker"><span>上海</span><span class="sep"></span><span>2024 年价</span><span class="sep"></span><span id="totalUnit">元 / 人 / 年</span></p>
+    <h1>一个上海人的一生，<br>每年要花多少钱</h1>
+    <p class="dek" id="dek">0–85 岁逐年消费结构 · 2024 年上海价 · 元/人/年</p>
+    <p class="lede" id="lede">从出生到 85 岁及以上，我们把每一年拆成八类支出，拼成 86 根柱子。模型里最贵的不是养娃那几年，是四十几岁那一段。</p>
+    <p class="verdict" id="verdict">—</p>
+    <p class="hh-warn" id="hhWarn" hidden>口径提醒：这一视图的户构成是按<b>标准家庭生命周期构造</b>的（一人户约 11%，七普上海实际约 28%），<b>水平与形状都不代表上海真实的户分布，仅作情景</b>。加权户均 <span id="hwWm">—</span> 元，对锚点 <span id="hwAnc">—</span> 元偏 <span id="hwDev">—</span>%。</p>
+  </header>
+
+  <section class="stats" id="stats" aria-label="关键数字">
+    <div class="stat"><span class="lb" id="s1l">最贵的一年</span><div class="vv" id="s1v">—</div><div class="sub" id="s1s">—</div></div>
+    <div class="stat"><span class="lb" id="s2l">最便宜的一年</span><div class="vv" id="s2v">—</div><div class="sub" id="s2s">—</div></div>
+    <div class="stat"><span class="lb" id="s3l">退休五年（59→64）</span><div class="vv" id="s3v">—</div><div class="sub" id="s3s">—</div></div>
+    <div class="stat" id="s4"><span class="lb" id="s4l">峰谷比</span><div class="vv" id="s4v">—</div><div class="sub" id="s4s">—</div></div>
+  </section>
+
+  <section class="figure" id="figure" aria-labelledby="fig-h">
+    <h2 id="fig-h" class="sr">0–85 岁逐年消费结构堆叠柱图</h2>
+
+    <details class="adv" id="adv">
+      <summary>调整视图<span class="pm" aria-hidden="true">＋</span></summary>
+    <div class="controls">
+      <div class="ctl-row">
+      <div class="ctl" id="basisCtl" hidden><span class="ctl-lb">口径</span>
+        <div class="seg" role="group" aria-label="口径：人均或每户">
+          <button type="button" data-basis="person" class="on" aria-pressed="true">人均</button>
+          <button type="button" data-basis="hh" aria-pressed="false">每户</button>
+        </div>
+      </div>
+      <div class="ctl"><span class="ctl-lb">视图</span>
+        <div class="seg" role="group" aria-label="视图：金额或占比">
+          <button type="button" data-mode="abs" class="on" aria-pressed="true">金额</button>
+          <button type="button" data-mode="pct" aria-pressed="false">占比</button>
+        </div>
+      </div>
+      <div class="ctl"><span class="ctl-lb">情景</span>
+        <div class="seg" role="group" aria-label="情景：低、基准、高">
+          <button type="button" data-scen="low" aria-pressed="false">低</button>
+          <button type="button" data-scen="base" class="on" aria-pressed="true">基准</button>
+          <button type="button" data-scen="high" aria-pressed="false">高</button>
+        </div>
+      </div>
+      <label class="sw"><input type="checkbox" id="annToggle" checked><span class="tr"></span><span>显示注释</span></label>
+      <button type="button" class="ghost" id="tableToggle" aria-pressed="false">表格视图</button>
+      </div>
+      <div class="ctl-row" id="sensRow" hidden>
+        <span class="sens-lb">脆弱性检验</span>
+        <div class="ctl" id="kgCtl" hidden><span class="ctl-lb">幼儿园</span>
+          <div class="seg" role="group" aria-label="幼儿园口径" id="kgSeg"></div>
+        </div>
+        <div class="ctl" id="a5Ctl" hidden><span class="ctl-lb">老年折减</span>
+          <div class="seg" role="group" aria-label="老年折减 A5" id="a5Seg"></div>
+        </div>
+        <div class="ctl" id="ltcCtl" hidden><span class="ctl-lb">长期照护</span>
+          <div class="seg" role="group" aria-label="长期照护" id="ltcSeg"></div>
+        </div>
+        <p class="glide-line" id="childLine" hidden></p>
+        <p class="glide-line" id="glideLine" hidden></p>
+        <span class="sens-note" id="sensNote">切换假设直接换掉整条曲线，不做平滑过渡</span>
+      </div>
+    </div>
+    </details>
+
+    <div class="chart-wrap" id="chartWrap">
+      <div class="tip" id="tip" aria-hidden="true"></div>
+    </div>
+
+    <div class="under no-card" id="under">
+      <div class="under-main">
+        <div class="legend" id="legend" role="group" aria-label="八个消费类别，点击只看一类"></div>
+        <p class="legend-note">点击任一类别只看该类（其余淡出到 8%）；再点一次恢复。柱间留白即年份分隔。</p>
+        <p class="hint-line" id="hintLine">点击任意一根柱子可以<b>钉住那一年</b>的构成，再点一次取消；Tab 聚焦柱子、回车钉住。</p>
+        <p class="figcap" id="figcap">
+          0–17 岁的柱子上覆有<b>斜纹</b>：那 18 根柱子是「家庭代付」口径——家庭为一个孩子一年的支出，不是孩子自己的收入。18 岁起切换为本人消费，因此 17→18 岁那个台阶有一半是口径切换，不是真实断崖。
+        </p>
+      </div>
+      <aside class="card" id="card" aria-live="polite" hidden></aside>
+    </div>
+
+    <div class="tv" id="tableview" hidden aria-label="逐年数值表格"></div>
+  </section>
+
+  <section class="method" id="method">
+    <details id="methodDetails">
+      <summary>数据是怎么来的（以及它哪里可能错）<span class="pm">+</span></summary>
+      <div class="method-body">
+        <p class="mk">没有任何一格是官方分年龄观测值。</p>
+        <p class="mk-warn" id="mSens"><b>本页最抓眼的结论——46 岁最贵、退休是一段五年的缓坡（59→64 累计 −<span id="mRet5">12.4</span>%），不是一道断崖——不是「调」出来的，但它确实踩在三条假设上。</b>
+          幼儿园口径切换改不了峰的位置：公办 5,000 与民办 12,000 两种口径下，峰都在 46 岁。真正能改形状的是 0–17 岁的篮子水平和 φ(a) 的子女窗口，两个都在下面的清单里。</p>
+        <p>上海 2024 年官方只发布全年龄的八大类总额：<b id="mTotal">—</b> 元 / 人 / 年。年龄形状分三段给出——0–17 岁是逐带逐类的<b>篮子</b>（吃、穿、用、学费、医疗各自给绝对额）；18–22 岁是独立构造的<b>大学成本</b>（学费 + 住宿 + 生活费）；23–85 岁是<b>户均消费 × 成人份额调整 φ(a) × 退休缓坡 ρ(a)</b>。八类的年龄梯度由 12 个 age knot 给定，最后用 IPF 把列和压回官方八类、行和压回 <span id="mTotal2">—</span> 元，单格压缩上限 <span id="mCap">15</span>%（实测最大 <span id="mScale">6.07</span>%）。所以这张图回答的是「如果上海 2024 年的年龄结构与这三段显式假设一致，会是什么样」，而不是「统计局的抽样调查结果」。</p>
+
+        <h3>0–2 岁的托育口径（v4 新增）</h3>
+        <p>0–2 岁没有独立的「托育」类：托班和早教都归在「教育文化娱乐 → 学前教育」。构造时用入托率 0.5% / 5% / 11%（0 / 1 / 2 岁）、托班混合价 4,000 元/月（含餐），早教参与率 15% / 25% / 18%、4,000 元/年，得到教育支出 <b id="nEd0">—</b> / <b id="nEd1">—</b> / <b id="nEd2">—</b> 元，对应总额 <b id="nT0">—</b> / <b id="nT1">—</b> / <b id="nT2">—</b> 元。<b>谷的位置由这条托育假设决定</b>：托育几乎为零的出生年才是全生最低点，2 岁已经比它高 <span id="nUp">—</span>%——所以「最便宜的一年」不是一个观测事实，而是「几岁开始花钱托育」这个假设的下游。<span id="nSlope">—</span></p>
+        <p class="mk-warn">低档（三岁均值 3%）下 2→3 岁自己就到 +16.4%，超过我们 12% 的报警线——说明「0–2 岁没有两位数跳变」是入托率假设证出来的，不是数据证出来的。三档下 30–39 岁只差 0.06%（62,749.6 / 62,729.7 / 62,710.5）：入托率是<b>局部</b>参数，只动 0–3 段，和 glide 的全表平移不是一回事。</p>
+        <p class="mk-warn">基准档的 2 岁入托率 11% 是区间上偏，不是点估计：这一档决定 2→3 岁台阶的高度，甚至决定谷落在 0 岁还是 2 岁。三档入托率下 2→3 岁分别是 +16.4% / +8.6% / +1.8%（三岁均值 3% / 5.5% / 8%）；再往下压，谷就退回 2 岁——「最便宜的一年」因此不是一个观测事实，而是这条假设的下游。见控制条里「入托率」那一行。</p>
+
+        <h3>独立审计与重建（v1 → v2 → v3）</h3>
+        <p>2026-11-07，本页被一份独立盲测（<code>notes/independent/</code>）推翻并整体重建。审计给出五条 P0，全部改掉；随后 v2→v3 又撤回了其中一条自己加出来的装饰：</p>
+        <ul class="mk-list">
+          <li><b>婴儿段是假的。</b>v1 把育娲 0–2 岁总额四等分为食 / 住 / 医 / 其他，导致 0 岁医疗 12,066 元。v2 改为逐带篮子，0 岁医疗 <span id="mH0">1,300</span> 元、占比 <span id="mH0s">4.0</span>%。</li>
+          <li><b>30–49 岁被家庭分母摊薄。</b>「家庭支出 ÷ 人数」把有孩年龄段压凹，成年峰被机械推到 59 岁。v2 引入 φ(a)（成人份额调整，45 岁 1.127），30–39 / 40–49 分别上移 31% / 23%，峰回到 <span id="mPkAge">46</span> 岁。</li>
+          <li><b>18 岁的断崖是口径拼接。</b>v1 的 17 岁含家庭住房分摊、18 岁切成住校，落差 −25.1%。v2 两端同口径，实测 −<span id="mStep">7.8</span>%。</li>
+          <li><b>4 岁峰是幼儿园假设的产物。</b>v1 用 12,000 元/年民办园，还叠了一个被抬高的婴儿段。v2 base 用公办 5,000，4 岁 <span id="m4">38,660</span> 元——在 86 个年龄里排第 <span id="m4rank">83</span> 位。</li>
+          <li><b>60 岁那个「崖」是硬乘出来的。</b>v2 为了让叙事上有一道断崖，加了 ρ(a)=1−0.10·smoothstep(59,60) 这个乘数，59→60 掉 <span id="mRet">3.5</span>%。复核发现去掉它只剩 −0.49%——那个台阶完全是乘数造出来的，不是数据里的东西。v3 已删除，改成五年 glide（ρ 从 1.00 线性降到 0.90），单年只降 <span id="mRet2">3.5</span>%、五年累计 <span id="mRet5b">12.4</span>%。<b>这是本轮唯一一处叙事被判定为「装饰」并撤回的地方。</b></li>
+        </ul>
+        <p class="glide-note" id="mGlide">—</p>
+        <p class="mk-warn">峰值落在 46 岁，是成年段年龄梯度的最大值所在，属参数设定而非实测发现；它可靠的地方是「不在育儿期、也不在退休后」这个位置，而不是 46 这个年份。同理，任何单年数字只代表模型，不代表某一年的真实支出。</p>
+        <p><b>仍然没解决的三件事</b>（不藏）：</p>
+        <ul class="mk-list">
+          <li><b>22 → 23 岁那条缝是向上的（+<span id="mUp23">14.0</span>%）</b>：22 岁还是「住校」口径，23 岁突然要租房。一半是真实的（毕业后自己付房租），一半是口径切换，但方向与幅度都无法用官方数据验证。这是 v3 里全图唯一向上的大跳。</li>
+          <li><b>0 岁医疗 <span id="mH0">2,200</span> 元（占 <span id="mH0s">6.9</span>%）</b>仍比独立先验低约 <span id="mH0gap">27</span>%：先验给的是含自费疫苗与儿保的 3,000–3,500。这一格与「医疗在 0 岁就该高」的直觉不符，是本表第二处标注。差额主要是自付与医保目录口径差，但没法证实。</li>
+          <li><b>户均锚定偏 <span id="mHhDev">−1.54</span>%</b>：户均加权 <span id="mHhWm">125,584</span> 元，对锚点 <span id="mHhAnchor">127,554</span> 元。构造的 1 / 2 / 3 / 2 / 1.4 人家庭构成比七普偏小（一人户 11% vs 28%），这一项不是精度问题，是构造假设的问题。</li>
+        </ul>
+
+        <h3>三个最脆弱的假设</h3>
+        <ol>
+          <li><b>23–30 岁的居住金额（≈20,800 元/年）。</b>这是 v1 留下、审计判为「与先验相符」的列；v3 把 23 岁总额压到 52,419 元后，居住占比落在 <span id="mH23b">39.7</span>%——仍高于先验 35% 的上限，但已不像 v2 那样刺眼。若上海年轻租客更依赖合租（15,000–18,000），23–29 段整条要下移 4,000–6,000。</li>
+          <li><b>3–5 岁的幼儿园口径（公办 5,000）。</b>换成民办 12,000，3–5 段整体上移约 18%（<span id="mKgLo">38,899</span> → <span id="mKgHi">45,899</span>），但峰仍然在 46 岁——这一条本身也是结论：<b>换幼儿园改不动峰的位置</b>。</li>
+          <li><b>φ(a) 的子女窗口（30–52 岁）与 n_c/n_a = 0.5。</b>全模型里对总量影响最大的单一参数：φ 从 1.00 到 1.13，对应 45 岁每人每年 +7,200 元，占其自身消费的 11%。窗口右移 2 年，30–34 段下调约 5%。</li>
+        </ol>
+
+        <h3>口径</h3>
+        <p>0–17 岁是<b>家庭代付</b>：一根柱子 = 一个家庭为这个孩子一年的支出，不是孩子自己花的钱。18–22 岁是<b>学费 + 住宿 + 生活费</b>，独立构造、不含房租本金。23 岁起是<b>本人消费</b>（户均 × 成人份额调整）。18 岁那个 −<span id="mStep2">7.8</span>% 的台阶，一半是口径切换（从家庭支出转为个人支出），不是真实的消费断崖；扣除口径差之后，真实降幅比它更小。<b>22 → 23 岁则相反</b>：那是一个向上的 +<span id="mUp23b">14.0</span>% 的缝，一半是毕业后的真实变化，一半是「住校 → 租房」的口径切换。</p>
+        <p id="mHh" hidden><b>每户视图</b>是另一张表：横轴换成<b>户主年龄 22–85</b>，柱高是一户人家一年的总支出（元/户/年），由人均表按户均人口加总得到。官方同样没有「户主年龄 × 消费」的交叉表，每一格也是估算；户均人口按户主年龄取 1 / 2 / 3 / 2 / 1.4 人的构造值。加权户均 <span id="mHhWm2">125,560</span> 元对锚点 <span id="mHhAnchor2">127,554</span> 元偏离 <span id="mHhDev2">−1.56</span>%——v1 的 +0.79% 是巧合抵平，不是精度。</p>
+
+        <h3>校准结果</h3>
+        <p class="cal" id="mCal">—</p>
+
+        <h3>来源（A = 官方 / 原始数据，B = 同行评议或机构报告，C = 模型假设）</h3>
+        <ul class="sources" id="sources"></ul>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <span>数据文件 <code style="font-size:11px">data/shanghai_lifecycle.json</code> · 生成于 <span id="ftBuilt">—</span> · 版本 <span id="ftGen">—</span></span>
+    <span>本页为估算，不构成任何投资或政策建议。</span>
+  </footer>
+</div>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     0. 基础
+     ============================================================ */
+  var NS = 'http://www.w3.org/2000/svg';
+  var PAYLOAD = JSON.parse(document.getElementById('data').textContent);
+  var PERSON = PAYLOAD.person || PAYLOAD;
+  var HOUSE = PAYLOAD.household || null;
+
+  /* 敏感性变体（文件可能不存在）：幼儿园口径 kindergarten、老年折减 a5、长期照护 ltc。
+     ltc 只重排八类构成、不改各年龄总额，所以它的变体可能没有 total，只校验 absolute。 */
+  var SENS = PAYLOAD.sens || {};
+  function variantsOf(o) {
+    if (!o) return null;
+    if (o.variants && typeof o.variants === 'object') return o.variants;
+    var has = Object.keys(o).some(function (k) { return o[k] && o[k].absolute; });
+    return has ? o : null;
+  }
+  var VIS = { kindergarten: variantsOf(SENS.kindergarten), a5: variantsOf(SENS.a5), ltc: variantsOf(SENS.ltc), glide: variantsOf(SENS.glide), childcare: variantsOf(SENS.childcare) };
+  function variantIds(o) {
+    if (!o) return null;
+    var ids = Object.keys(o).filter(function (id) {
+      var v = o[id];
+      if (!v || !v.absolute) return false;
+      if (v.total && v.total.length !== PERSON.ages.length) return false;
+      return Object.keys(v.absolute).length >= 8;
+    });
+    return ids.length > 1 ? ids : null;
+  }
+  var KG_IDS = variantIds(VIS.kindergarten), A5_IDS = variantIds(VIS.a5), LTC_IDS = variantIds(VIS.ltc);
+  /* 哪个变体与基准数据逐格相同，那就是「默认」那一档 */
+  function baseVariant(ids, obj) {
+    if (!ids) return null;
+    var cats = PERSON.categories, n = PERSON.total.length;
+    for (var k = 0; k < ids.length; k++) {
+      var v = obj[ids[k]], same = true;
+      for (var i = 0; i < n && same; i++) {
+        var tol = Math.max(0.5, Math.abs(PERSON.total[i]) * 2e-4);
+        if (v.total) {
+          same = Math.abs(v.total[i] - PERSON.total[i]) <= tol;
+        } else {
+          var s = 0;
+          for (var c = 0; c < cats.length; c++) s += v.absolute[cats[c].id][i];
+          same = Math.abs(s - PERSON.total[i]) <= tol;
+        }
+      }
+      if (same) return ids[k];
+    }
+    return null;
+  }
+  var KG_BASE = baseVariant(KG_IDS, VIS.kindergarten);
+  var A5_BASE = baseVariant(A5_IDS, VIS.a5);
+  var LTC_BASE = baseVariant(LTC_IDS, VIS.ltc);
+  /* 「默认」那一档排在第一个，读起来才是「基准 → 替代」，而不是反过来 */
+  function baseFirst(ids, baseId) {
+    if (!ids || !baseId) return ids;
+    var out = [baseId];
+    ids.forEach(function (id) { if (id !== baseId) out.push(id); });
+    return out;
+  }
+  KG_IDS = baseFirst(KG_IDS, KG_BASE);
+  A5_IDS = baseFirst(A5_IDS, A5_BASE);
+  LTC_IDS = baseFirst(LTC_IDS, LTC_BASE);
+  function labOf(obj, id) { var v = obj && obj[id]; return (v && v.label) ? v.label : id; }
+  /* 按钮上的短标签：优先用结构化字段（幼儿园加项、A5 系数），长 label 留作 title */
+  function shortLab(kind, id, baseId) {
+    var o = VIS[kind] || {}, v = o[id];
+    if (!v) return id;
+    var lab = v.label || '';
+    if (kind === 'kindergarten') {
+      var pre = /^(民办|私立)/.test(lab) ? '民办' : '公办';
+      var nums = lab.match(/[\d][\d,]*/g) || [];
+      var amt = nums.length ? nums[nums.length - 1] : null;
+      return pre + (amt ? ' ' + amt : '');
+    }
+    if (kind === 'a5' && v.a5_factor != null) {
+      return (id === baseId ? '基准 ' : '旧版 ') + (+v.a5_factor).toFixed(2);
+    }
+    if (kind === 'ltc') {
+      if (id === baseId) return '居家';
+      var m = /([+＋][\d,]+)/.exec(lab);
+      return m ? '含长护 ' + m[1] : lab;
+    }
+    return lab;
+  }
+
+
+  var RAW = PERSON;
+  var CATS = PERSON.categories;
+  var AGES = PERSON.ages;
+  var N = AGES.length;
+  var META = PERSON.meta;
+  var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* v2 是一条单峰曲线（峰 46 岁）；幼儿园 / A5 / 长期照护三个开关都不改峰位 */
+
+  var SCEN = null, Y_MAX_ABS = 0, UNIT = '元 / 人 / 年', PER = '人';
+
+  var state = { basis: 'person', mode: 'abs', scen: 'base', solo: null, pinned: null, hover: null, ann: true, table: false, kg: null, a5: null, ltc: null };
+
+  function scenOf(d) {
+    return {
+      low:  { total: d.scenarios.low.total,  abs: d.scenarios.low.absolute,  name: '低情景',
+              wm: d.scenarios.low.weighted_mean },
+      base: { total: d.total,                abs: d.absolute,                  name: '基准情景',
+              wm: d.weighted_mean != null ? d.weighted_mean : d.scenarios.base.weighted_mean },
+      high: { total: d.scenarios.high.total, abs: d.scenarios.high.absolute,  name: '高情景',
+              wm: d.scenarios.high.weighted_mean }
+    };
+  }
+
+  /* 敏感性开关：把变体当作「相对基准的逐格增量」叠加，单因素时与原文件完全一致 */
+  function composePerson() {
+    if (!state.kg && !state.a5 && !state.ltc) return PERSON;
+    var cats = PERSON.categories, n = PERSON.ages.length, i;
+    var abs = {}, total = new Array(n);
+    for (i = 0; i < n; i++) total[i] = 0;
+    cats.forEach(function (c) {
+      var base = PERSON.absolute[c.id], arr = new Array(n);
+      var dk = (state.kg && VIS.kindergarten[state.kg].absolute[c.id]) || null;
+      var da = (state.a5 && VIS.a5[state.a5].absolute[c.id]) || null;
+      var dl = (state.ltc && VIS.ltc[state.ltc].absolute[c.id]) || null;
+      for (i = 0; i < n; i++) {
+        var v = base[i];
+        if (dk) v += dk[i] - base[i];
+        if (da) v += da[i] - base[i];
+        if (dl) v += dl[i] - base[i];
+        arr[i] = v > 0 ? v : 0;
+        total[i] += arr[i];
+      }
+      abs[c.id] = arr;
+    });
+    var sc = {};
+    ['low', 'base', 'high'].forEach(function (k) {
+      var sa = {}, st = new Array(n);
+      for (i = 0; i < n; i++) st[i] = 0;
+      cats.forEach(function (c) {
+        var sb = PERSON.scenarios[k].absolute[c.id], arr = new Array(n);
+        for (i = 0; i < n; i++) {
+          var v = sb[i] + (abs[c.id][i] - PERSON.absolute[c.id][i]);
+          arr[i] = v > 0 ? v : 0;
+          st[i] += arr[i];
+        }
+        sa[c.id] = arr;
+      });
+      sc[k] = { total: st, absolute: sa, weighted_mean: PERSON.scenarios[k].weighted_mean };
+    });
+    var share = {};
+    cats.forEach(function (c) {
+      share[c.id] = abs[c.id].map(function (v, j) { return total[j] ? v / total[j] : 0; });
+    });
+    var meta = {}, mk;
+    for (mk in PERSON.meta) meta[mk] = PERSON.meta[mk];
+    var pk = 0, tr = 0;
+    for (i = 1; i < n; i++) { if (total[i] > total[pk]) pk = i; if (total[i] < total[tr]) tr = i; }
+    meta.peak_age = PERSON.ages[pk]; meta.peak_value = total[pk];
+    meta.trough_age = PERSON.ages[tr]; meta.trough_value = total[tr];
+    meta.peak_to_trough = total[pk] / total[tr];
+    meta.sensitivity = { kindergarten: state.kg || KG_BASE, a5: state.a5 || A5_BASE, ltc: state.ltc || LTC_BASE };
+    return { meta: meta, categories: cats, ages: PERSON.ages, absolute: abs, share: share,
+             total: total, stages: PERSON.stages, annotations: PERSON.annotations,
+             sources: PERSON.sources, scenarios: sc, units: PERSON.units };
+  }
+
+  /* 切换口径：重置数据集相关的常量与缓冲区 */
+  function bindBasis(basis) {
+    RAW = (basis === 'hh' && HOUSE) ? HOUSE : composePerson();
+    CATS = RAW.categories;
+    AGES = RAW.ages;
+    N = AGES.length;
+    META = RAW.meta;
+    SCEN = scenOf(RAW);
+    UNIT = (basis === 'hh' && HOUSE) ? '元 / 户 / 年' : '元 / 人 / 年';
+    PER = (basis === 'hh' && HOUSE) ? '户' : '人';
+
+    Y_MAX_ABS = axisFor(state.scen);
+
+    curY = new Float64Array(N * 8);
+    curH = new Float64Array(N * 8);
+    tgtY = new Float64Array(N * 8);
+    tgtH = new Float64Array(N * 8);
+    barGroups = [];
+    hatchRects = [];
+    state.pinned = null;
+    state.hover = null;
+  }
+
+  /* 年龄 → 下标（家庭口径的横轴是户主年龄，不等于下标） */
+  function idxOf(age) { return AGES.indexOf(age); }
+  function isHH() { return state.basis === 'hh' && !!HOUSE; }
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  function mk(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  function pct(x) { return (x * 100).toFixed(1); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function textW(s, fs) {
+    var w = 0;
+    for (var i = 0; i < s.length; i++) {
+      var c = s.codePointAt(i);
+      if (c > 0x2E80) w += fs;
+      else if (c === 32) w += fs * 0.3;
+      else if (c === 0xB7 || c === 0x2014 || c === 0x2013) w += fs * 0.5;
+      else w += fs * 0.56;
+    }
+    return w;
+  }
+  function cur() { return SCEN[state.scen]; }
+
+  /* ============================================================
+     1. 关键数字
+     ============================================================ */
+  var statsEl = $('#stats');
+
+  function argmax(t, fromAge) {
+    var best = -1, bi = -1;
+    for (var i = 0; i < N; i++) {
+      if (AGES[i] < fromAge) continue;
+      if (t[i] > best) { best = t[i]; bi = i; }
+    }
+    return { i: bi, v: best, age: AGES[bi] };
+  }
+  function argmin(t) {
+    var best = Infinity, bi = -1;
+    for (var i = 0; i < N; i++) { if (t[i] < best) { best = t[i]; bi = i; } }
+    return { i: bi, v: best, age: AGES[bi] };
+  }
+
+  function renderStats() {
+    var hh = (state.basis === 'hh' && HOUSE);
+    var t = RAW.total;
+    var pk, tr, second;
+
+    if (hh) {
+      pk = argmax(t, 0);
+      tr = argmin(t);
+      $('#s1l').textContent = '户均峰值';
+      $('#s2l').textContent = '户均谷值';
+      $('#s3l').textContent = '峰谷比';
+      $('#s4l').textContent = '';
+      $('#s1v').innerHTML = fmt(pk.v) + '<span class="u">元</span>';
+      $('#s1s').textContent = pk.age + ' 岁 · 元 / 户 / 年';
+      $('#s2v').innerHTML = fmt(tr.v) + '<span class="u">元</span>';
+      $('#s2s').textContent = tr.age + ' 岁 · 元 / 户 / 年';
+      $('#s3v').innerHTML = (pk.v / tr.v).toFixed(2) + '<span class="u">×</span>';
+      $('#s3s').textContent = fmt(pk.v) + ' ÷ ' + fmt(tr.v);
+      /* 第四格：加权户均消费 —— 用当前情景的 weighted_mean，对锚点（七普户均 2.32 人推得的
+         127,553.6 元）算偏离。这是整张表能不能落回官方总额的体检指标。 */
+      var wm = cur().wm, anc = (HOUSE.meta && HOUSE.meta.anchor_household) || null;
+      $('#s4l').textContent = '加权户均消费';
+      if (wm == null) {
+        $('#s4v').innerHTML = '—';
+        $('#s4s').textContent = '未提供加权均值';
+      } else {
+        $('#s4v').innerHTML = fmt(wm) + '<span class="u">元</span>';
+        if (anc) {
+          var dv = (wm / anc - 1) * 100;
+          $('#s4s').textContent = '对锚点 ' + fmt(anc) + ' 偏离 ' +
+            (dv >= 0 ? '+' : '−') + Math.abs(dv).toFixed(2) + '%';
+        } else {
+          $('#s4s').textContent = '元 / 户 / 年 · 按户加权';
+        }
+      }
+      statsEl.classList.remove('three');
+      $('#s4').hidden = false;
+    } else {
+      pk = { age: META.peak_age, v: META.peak_value };
+      tr = { age: META.trough_age, v: META.trough_value };
+      /* 退休五年：59→64 的累计降幅，从当前序列现算（开关会改它，不能写死） */
+      var i59 = idxOf(59), i64 = idxOf(64);
+      var d64 = (i59 >= 0 && i64 >= 0) ? (t[i64] / t[i59] - 1) * 100 : null;
+      $('#s1l').textContent = '最贵的一年';
+      $('#s2l').textContent = '最便宜的一年';
+      $('#s3l').textContent = '退休五年（59→64）';
+      $('#s4l').textContent = '峰谷比';
+      $('#s1v').innerHTML = fmt(pk.v) + '<span class="u">元</span>';
+      $('#s1s').textContent = pk.age + ' 岁 · 元 / 人 / 年';
+      $('#s2v').innerHTML = fmt(tr.v) + '<span class="u">元</span>';
+      $('#s2s').textContent = (tr.age <= 5 ? '学龄前 · ' + tr.age + ' 岁' : tr.age + ' 岁') + ' · 元 / 人 / 年';
+      $('#s3v').innerHTML = d64 == null ? '—' : '−' + Math.abs(d64).toFixed(1) + '<span class="u">%</span>';
+      $('#s3s').textContent = d64 == null ? '该数据集没有 59/64 岁'
+        : '59 → 64 岁 · ' + fmt(t[i59]) + ' → ' + fmt(t[i64]) + ' 元';
+      $('#s4v').innerHTML = (pk.v / tr.v).toFixed(2) + '<span class="u">×</span>';
+      $('#s4s').textContent = fmt(pk.v) + ' ÷ ' + fmt(tr.v);
+      statsEl.classList.remove('three');
+      $('#s4').hidden = false;
+    }
+    var tot = $('#totalUnit');
+    if (tot) tot.textContent = UNIT;
+  }
+
+  /* 方法论里的数字始终来自人均数据集（它描述模型本身） */
+  /* 方法论里的数字：模型本身用 PERSON（人均数据集），户均的用 HOUSE —— 一律现算 */
+  (function nurseryNote() {
+    var t = PERSON.total, e = PERSON.absolute.education, i0 = PERSON.ages.indexOf(0), i2 = PERSON.ages.indexOf(2);
+    function set(id, v) { var el = $('#' + id); if (el) el.textContent = v; }
+    if (i0 < 0) return;
+    set('nEd0', fmt(e[i0])); set('nEd1', fmt(e[i0 + 1])); set('nEd2', fmt(e[i0 + 2]));
+    set('nT0', fmt(t[i0])); set('nT1', fmt(t[i0 + 1])); set('nT2', fmt(t[i0 + 2]));
+    set('nUp', ((t[i0 + 2] / t[i0] - 1) * 100).toFixed(1));
+    set('nSlope', '2→3 岁只 +' + ((t[i0 + 3] / t[i0 + 2] - 1) * 100).toFixed(1) + '%，托育计入教育后，这一岁不再有「突然多花一笔」的跳崖。');
+  })();
+
+  (function methodNumbers() {
+    var t = PERSON.total, pm = PERSON.meta, ag = PERSON.ages;
+    function idx(a) { return ag.indexOf(a); }
+    $('#mTotal').textContent = fmt(pm.anchor_total);
+    $('#mTotal2').textContent = fmt(pm.anchor_total);
+    var cal = pm.calibration;
+    $('#mCap').textContent = cal.cap_pct != null ? String(Math.round(cal.cap_pct)) : '15';
+    $('#mScale').textContent = cal.max_cell_scaling_pct != null ? cal.max_cell_scaling_pct.toFixed(2) : '—';
+    $('#mPkAge').textContent = String(pm.peak_age);
+    var d18 = (t[idx(18)] / t[idx(17)] - 1) * 100;
+    $('#mStep').textContent = Math.abs(d18).toFixed(1);
+    $('#mStep2').textContent = Math.abs(d18).toFixed(1);
+    $('#m4').textContent = fmt(t[4]);
+    var sorted = t.slice().sort(function (a, b) { return b - a; });
+    $('#m4rank').textContent = String(sorted.indexOf(t[4]) + 1);
+    var d60 = Math.abs((t[idx(60)] / t[idx(59)] - 1) * 100);
+    var d64 = Math.abs((t[idx(64)] / t[idx(59)] - 1) * 100);
+    var d23 = (t[idx(23)] / t[idx(22)] - 1) * 100;
+    ['mRet', 'mRet2'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = d60.toFixed(1); });
+    ['mRet5', 'mRet5b'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = d64.toFixed(1); });
+    ['mUp23', 'mUp23b'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = d23.toFixed(1); });
+    var h0 = PERSON.absolute.health[0];
+    $('#mH0').textContent = fmt(h0);
+    $('#mH0s').textContent = (h0 / t[0] * 100).toFixed(1);
+    if ($('#mH0gap')) $('#mH0gap').textContent = Math.round((1 - h0 / 3000) * 100);
+    var h23 = PERSON.absolute.housing[idx(23)] / t[idx(23)] * 100;
+    if ($('#mH23')) $('#mH23').textContent = h23.toFixed(1);
+    if ($('#mH23b')) $('#mH23b').textContent = h23.toFixed(1);
+    function segMean(arr, a, b) {
+      var i0 = idx(a), i1 = idx(b), sum = 0;
+      for (var i = i0; i <= i1; i++) sum += arr[i];
+      return sum / (i1 - i0 + 1);
+    }
+    var kgHi = null;
+    if (KG_IDS) KG_IDS.forEach(function (id) {
+      if (kgHi == null && id !== KG_BASE) kgHi = segMean(VIS.kindergarten[id].total, 3, 5);
+    });
+    $('#mKgLo').textContent = fmt(segMean(t, 3, 5));
+    $('#mKgHi').textContent = kgHi == null ? '—' : fmt(kgHi);
+    if (HOUSE && HOUSE.meta) {
+      var hm = HOUSE.meta, wm = hm.weighted_mean, anc = hm.anchor_household;
+      var dv = (wm / anc - 1) * 100;
+      var devTxt = (dv >= 0 ? '+' : '−') + Math.abs(dv).toFixed(2);
+      ['mHhWm', 'mHhWm2'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = fmt(wm); });
+      ['mHhAnchor', 'mHhAnchor2'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = fmt(anc); });
+      ['mHhDev', 'mHhDev2'].forEach(function (id) { if ($('#' + id)) $('#' + id).textContent = devTxt; });
+    }
+    var pw = (pm.population_weights && pm.population_weights.band_shares) || {};
+    if ($('#p014') && pw['0-14'] != null) $('#p014').textContent = (pw['0-14'] * 100).toFixed(2) + '%';
+    if ($('#p60') && pw['60+'] != null) $('#p60').textContent = (pw['60+'] * 100).toFixed(2) + '%';
+    var pe = pm.calibration.category_error_pct_max;
+    $('#mCal').textContent =
+      '八类之和误差 ' + (Math.abs(cal.row_error_max) < 1e-9 ? '0' : fmt(cal.row_error_max * 1e6) + 'e-6') +
+      '（机器精度） · 加权总额 ' + fmt(pm.weighted_mean) +
+      '.00 元（' + (cal.weighted_total_error >= 0 ? '+' : '−') + Math.abs(cal.weighted_total_error).toFixed(4) + '%）' +
+      ' · 逐类最大偏差 ' + (+pe).toFixed(4) + '%' +
+      ' · 单格最大压缩 ' + (cal.max_cell_scaling_pct != null ? cal.max_cell_scaling_pct.toFixed(2) : '—') + '%（闸门 ' +
+      (cal.cap_pct != null ? Math.round(cal.cap_pct) : 15) + '%）';
+    $('#ftGen').textContent = (pm.version || '') + ' · ' + (pm.generated_by || '—');
+    $('#ftBuilt').textContent = '__GENERATED_AT__';
+  })();
+
+  /* 只有汇总统计的敏感性（退休 glide 的 ρ_end 三档）：不画图，只写一句 */
+  (function glideNote() {
+    var el = $('#mGlide');
+    if (!el) return;
+    var o = VIS.glide || {}, ids = [];
+    for (var id in o) {
+      if (o[id] && o[id].drop_59_60_pct != null && o[id].total_85 != null) ids.push(id);
+    }
+    if (!ids.length) { el.hidden = true; return; }
+    ids.sort(function (a, b) { return o[a].retire_end_value - o[b].retire_end_value; });
+    var ends = ids.map(function (i) { return o[i].retire_end_value.toFixed(2); }).join(' / ');
+    var d1 = ids.map(function (i) { return '−' + Math.abs(o[i].drop_59_60_pct).toFixed(1) + '%'; }).join(' / ');
+    var d2 = ids.map(function (i) { return '−' + Math.abs(o[i].cum_59_64_pct).toFixed(1) + '%'; }).join(' / ');
+    var t85 = ids.map(function (i) { return fmt(o[i].total_85); }).join(' / ');
+    el.textContent = 'ρ 的端点是估计值，不是观测：ρ_end 取 ' + ends + ' 三档，59→60 的单年降幅分别是 ' + d1 +
+      '，五年累计 ' + d2 + '（85 岁分别 ' + t85 + ' 元）。三档的峰都仍在 ' + PERSON.meta.peak_age +
+      ' 岁——退休无论怎么假设都不是断崖。';
+  })();
+
+  function idxOf25(age) { return PERSON.ages.indexOf(age); }
+
+  /* ============================================================
+     2. SVG 骨架
+     ============================================================ */
+  var wrap = $('#chartWrap');
+  var tip = $('#tip');
+  var svg = mk('svg', { 'class': 'chart', role: 'img', 'aria-label': '' });
+  wrap.appendChild(svg);
+
+  var gGrid = mk('g', { 'class': 'g-grid' }, svg);
+  var gBars = mk('g', { 'class': 'g-bars' }, svg);
+  var gHatch = mk('g', { 'class': 'g-hatch', 'pointer-events': 'none' }, svg);
+  var gBand = mk('g', { 'class': 'g-band', 'pointer-events': 'none' }, svg);
+  var gRib = mk('g', { 'class': 'g-rib', 'pointer-events': 'none' }, svg);
+  var gSwitch = mk('g', { 'class': 'g-switch', 'pointer-events': 'none' }, svg);
+  var gAnn = mk('g', { 'class': 'g-ann', 'pointer-events': 'none' }, svg);
+  var gSolo = mk('text', { 'class': 'solo-t', 'text-anchor': 'middle' }, svg);
+  var gOver = mk('rect', { 'class': 'ov', fill: 'transparent' }, svg);
+
+  var bandRect = mk('rect', { fill: '#191817', opacity: '0', 'pointer-events': 'none' }, gBand);
+  var pinRule = mk('rect', { fill: '#191817', opacity: '0', 'pointer-events': 'none' }, gBand);
+  var focusRing = mk('rect', { fill: 'none', stroke: '#191817', 'stroke-width': 1.2, 'stroke-dasharray': '3 2', opacity: '0', 'pointer-events': 'none' }, gBand);
+
+  // 斜纹 pattern
+  var defs = mk('defs', null, svg);
+  var pat = mk('pattern', { id: 'hatchPat', width: '6', height: '6', patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
+  mk('line', { x1: '0', y1: '0', x2: '0', y2: '6', stroke: '#FFFFFF', 'stroke-width': '1.5', 'stroke-opacity': '0.62' }, pat);
+  mk('line', { x1: '0', y1: '0', x2: '0', y2: '6', stroke: '#191817', 'stroke-width': '1', 'stroke-opacity': '0.10' }, pat);
+
+  var barGroups = [];
+  var ribBands = [];
+  var axisLabels = [];
+
+  var G = { W: 1160, H: 620, pl: 56, pr: 16, pt: 120, pb: 74, plotW: 1088, plotH: 426, step: 12.65, barW: 11 };
+  var ANN_LEVELS = [24, 56, 88];
+  var curY = new Float64Array(N * 8);
+  var curH = new Float64Array(N * 8);
+  var tgtY = new Float64Array(N * 8);
+  var tgtH = new Float64Array(N * 8);
+  var rafId = 0, tweenGen = 0;
+
+  function yMax() { return state.mode === 'abs' ? Y_MAX_ABS : 100; }
+
+  /* y 轴上限。人均口径三情景共用一把尺子（80,000），切情景时轴不跳；
+     每户口径情景间差距更大（基准峰值 167,036、高情景 185,640），共用一把尺子会把
+     上限顶到 19 万，基准视图顶部空出一整格。所以每户口径按当前情景单独定上限，
+     并保证「最上面那条网格线一定被柱子穿过」。 */
+  function axisFor(key) {
+    var i, mx = 0, bmx = 0, hmx = 0;
+    var s = SCEN[key] || SCEN.base;
+    for (i = 0; i < N; i++) if (s.total[i] > mx) mx = s.total[i];
+    if (isHH()) return Math.max(10000, Math.ceil((mx * 1.05) / 5000) * 5000);
+    for (i = 0; i < N; i++) {
+      if (SCEN.base.total[i] > bmx) bmx = SCEN.base.total[i];
+      if (SCEN.high.total[i] > hmx) hmx = SCEN.high.total[i];
+    }
+    /* 5,000 一档：保证最上面那条网格线不至于离最高的柱子太远（v3 峰值 64,517，轴顶 75,000） */
+    return Math.max(10000, Math.ceil(Math.max(bmx * 1.075, hmx * 1.005) / 5000) * 5000);
+  }
+  function yOf(v) { return G.pt + G.plotH * (1 - v / yMax()); }
+  function xOf(i) { return G.pl + i * G.step + (G.step - G.barW) / 2; }
+  function cxOf(i) { return G.pl + i * G.step + G.step / 2; }
+
+  /* ============================================================
+     3. 布局
+     ============================================================ */
+  function layout() {
+    var W = Math.max(760, Math.round(wrap.clientWidth || 1160));
+    /* 超宽屏：图不是只横向拉伸。高度和字号都跟着长，否则 3440 宽下会变成一条 5:1 的细带，
+       字小得像脚注——那才是「看着展不开」的真正来源。k 在 2000px 以下恒为 1，
+       所以 1024 / 1440 / 1920 三档的字号与行距一点没动。 */
+    var k = W <= 2000 ? 1 : Math.min(1.3, 1 + (W - 2000) / 4200);
+    var H = W <= 1800 ? 620 : Math.round(Math.min(900, 620 + (W - 1800) * 0.17));
+    var pl = Math.round(56 * k), pr = Math.round(16 * k);
+    var pt = Math.round(120 * k), pb = Math.round(76 * k);
+    G = {
+      W: W, H: H, pl: pl, pr: pr, pt: pt, pb: pb, k: k,
+      levels: ANN_LEVELS.map(function (v) { return Math.round(v * k); }),
+      plotW: W - pl - pr, plotH: H - pt - pb,
+      step: (W - pl - pr) / N, barW: 0
+    };
+    G.barW = Math.max(2, Math.min(38, G.step - 1.6));
+    G.plotH = H - pt - pb;
+
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.style.width = W + 'px';
+    svg.style.setProperty('--k', k.toFixed(3));
+
+    gOver.setAttribute('x', G.pl);
+    gOver.setAttribute('y', G.pt);
+    gOver.setAttribute('width', G.plotW);
+    gOver.setAttribute('height', G.plotH);
+    gOver.setAttribute('pointer-events', 'all');
+
+    // 柱子位置
+    for (var i = 0; i < N; i++) {
+      var g = barGroups[i];
+      if (!g) continue;
+      var x = xOf(i);
+      for (var c = 0; c < 8; c++) {
+        g.rects[c].setAttribute('x', x.toFixed(2));
+        g.rects[c].setAttribute('width', G.barW.toFixed(2));
+      }
+      g.g.setAttribute('data-x', x);
+    }
+    for (var h = 0; h < hatchRects.length; h++) {
+      var hr = hatchRects[h];
+      hr.rect.setAttribute('x', xOf(hr.age).toFixed(2));
+      hr.rect.setAttribute('width', G.barW.toFixed(2));
+      hr.wash.setAttribute('x', xOf(hr.age).toFixed(2));
+      hr.wash.setAttribute('width', G.barW.toFixed(2));
+    }
+
+    renderAxis();
+    renderRibbon();
+    renderSwitchMarker();
+    renderAnn();
+    refreshSel();
+    updateBars(false);
+  }
+
+  /* ============================================================
+     4. 坐标轴
+     ============================================================ */
+  function renderAxis() {
+    while (gGrid.firstChild) gGrid.removeChild(gGrid.firstChild);
+    axisLabels = [];
+    var ymaxv = yMax();
+    var stepV = state.mode === 'abs' ? (ymaxv > 100000 ? 20000 : 10000) : 20;
+    for (var v = stepV; v < ymaxv - 1e-6; v += stepV) {
+      var y = yOf(v);
+      mk('line', { 'class': 'grid', x1: G.pl, y1: y.toFixed(2), x2: G.pl + G.plotW, y2: y.toFixed(2) }, gGrid);
+      var lab = state.mode === 'abs' ? (v / 10000) + '万' : v + '%';
+      mk('text', { 'class': 'ylab', x: G.pl - 9, y: (y + 3.6).toFixed(2), 'text-anchor': 'end' }, gGrid).textContent = lab;
+    }
+    mk('line', { 'class': 'grid zero', x1: G.pl, y1: G.pt + G.plotH, x2: G.pl + G.plotW, y2: G.pt + G.plotH }, gGrid);
+    mk('text', { 'class': 'ylab', x: G.pl - Math.round(9 * (G.k || 1)), y: G.pt + G.plotH + 3.6, 'text-anchor': 'end' }, gGrid).textContent = '0';
+    mk('text', { 'class': 'ylab unit', x: 0, y: 10 }, gGrid).textContent =
+      state.mode === 'abs' ? UNIT : '占当年支出 %';
+
+    // x 轴刻度（画在绘图区下方、阶段色带上方）
+    var lo = AGES[0], hi = AGES[N - 1];
+    var ticks = [];
+    for (var a = Math.ceil(lo / 10) * 10; a <= hi; a += 10) ticks.push(a);
+    if (ticks[0] !== lo) ticks.unshift(lo);
+    if (ticks[ticks.length - 1] !== hi) ticks.push(hi);
+    var xlY = G.pt + G.plotH + Math.round(21 * (G.k || 1));
+    ticks.forEach(function (a) {
+      var t = mk('text', { 'class': 'xlab', x: cxOf(idxOf(a)).toFixed(2), y: xlY, 'text-anchor': 'middle' }, gGrid);
+      t.textContent = String(a);
+      t.setAttribute('data-age', a);
+      axisLabels.push(t);
+    });
+
+    // 0–17 家庭代付的口径标记由「柱上斜纹 + 下方阶段色带」承担，此处不再画括线，避免与刻度挤在一起
+  }
+
+  /* ============================================================
+     5. 柱子
+     ============================================================ */
+  var hatchRects = [];
+
+  function buildBars() {
+    while (gBars.firstChild) gBars.removeChild(gBars.firstChild);
+    barGroups = [];
+    for (var i = 0; i < N; i++) {
+      var g = mk('g', {
+        'class': 'bar', tabindex: '0', role: 'button', 'data-i': i,
+        'aria-label': AGES[i] + ' 岁' + (isHH() ? '' : (AGES[i] <= 17 ? '（家庭代付口径）' : ''))
+      }, gBars);
+      var rects = [];
+      for (var c = 0; c < 8; c++) {
+        rects.push(mk('rect', { 'class': 'seg-rect', fill: CATS[c].color, x: '0', y: G.pt + G.plotH, width: '6', height: '0' }, g));
+      }
+      barGroups.push({ g: g, rects: rects });
+    }
+
+    while (gHatch.firstChild) gHatch.removeChild(gHatch.firstChild);
+    hatchRects = [];
+    // 斜纹只用于人均口径的 0–17 岁「家庭代付」；家庭口径本身就是全家支出
+    if (!isHH()) {
+      for (var a = 0; a <= 17; a++) {
+        if (AGES.indexOf(a) < 0) continue;
+        var wash = mk('rect', { fill: '#FFFFFF', opacity: '0.16', 'pointer-events': 'none' }, gHatch);
+        var hr = mk('rect', { fill: 'url(#hatchPat)', 'pointer-events': 'none' }, gHatch);
+        hatchRects.push({ age: a, wash: wash, rect: hr });
+      }
+    }
+
+    // 事件
+    barGroups.forEach(function (bg) {
+      var i = +bg.g.getAttribute('data-i');
+      bg.g.addEventListener('focus', function () { setHover(i, true); showFocus(i); });
+      bg.g.addEventListener('blur', function () {
+        focusRing.setAttribute('opacity', '0');
+        if (state.hover === i && state.pinned === null) clearHover();
+      });
+      bg.g.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePin(i); }
+      });
+    });
+  }
+
+  function showFocus(i) {
+    var top = G.pt + G.plotH, tot = cur().total[i];
+    top = yOf(state.mode === 'abs' ? tot : 100);
+    focusRing.setAttribute('x', (xOf(i) - 1.5).toFixed(1));
+    focusRing.setAttribute('y', (top - 2).toFixed(1));
+    focusRing.setAttribute('width', (G.barW + 3).toFixed(1));
+    focusRing.setAttribute('height', (G.pt + G.plotH - top + 2).toFixed(1));
+    focusRing.setAttribute('opacity', '1');
+  }
+
+  function updateBarLabels() {
+    var s = cur();
+    for (var i = 0; i < N; i++) {
+      barGroups[i].g.setAttribute('aria-label',
+        AGES[i] + ' 岁' + (AGES[i] <= 17 ? '（家庭代付口径）' : '') +
+        '，合计 ' + fmt(s.total[i]) + ' 元/年');
+    }
+  }
+
+  function computeTargets() {
+    var s = cur(), ymaxv = yMax();
+    for (var i = 0; i < N; i++) {
+      var tot = s.total[i] || 1;
+      var acc = 0;
+      for (var c = 0; c < 8; c++) {
+        var v = s.abs[CATS[c].id][i];
+        var val = state.mode === 'abs' ? v : (v / tot) * 100;
+        var yb = G.pt + G.plotH * (1 - acc / ymaxv);
+        var yt = G.pt + G.plotH * (1 - (acc + val) / ymaxv);
+        var k = c * N + i;
+        tgtY[k] = yt;
+        tgtH[k] = Math.max(0, yb - yt);
+        acc += val;
+      }
+    }
+    updateBarLabels();
+  }
+
+  function paint() {
+    for (var c = 0; c < 8; c++) {
+      for (var i = 0; i < N; i++) {
+        var k = c * N + i, r = barGroups[i].rects[c];
+        r.setAttribute('y', curY[k].toFixed(2));
+        r.setAttribute('height', Math.max(0.4, curH[k]).toFixed(2));
+      }
+    }
+  }
+
+  function updateBars(animate, done) {
+    computeTargets();
+    cancelAnimationFrame(rafId);
+    var gen = ++tweenGen;
+    var settled = false;
+    function snap() {
+      if (settled || gen !== tweenGen) return;
+      settled = true;
+      cancelAnimationFrame(rafId);
+      for (var k = 0; k < N * 8; k++) { curY[k] = tgtY[k]; curH[k] = tgtH[k]; }
+      paint();
+      if (done) done();
+    }
+    if (!animate || RM) { snap(); return; }
+    var sY = curY.slice(0), sH = curH.slice(0), t0 = 0;
+    function step(now) {
+      if (gen !== tweenGen || settled) return;
+      if (!t0) t0 = now;
+      var p = Math.min(1, (now - t0) / 300);
+      var e = 1 - Math.pow(1 - p, 3);
+      for (var j = 0; j < N * 8; j++) {
+        curY[j] = sY[j] + (tgtY[j] - sY[j]) * e;
+        curH[j] = sH[j] + (tgtH[j] - sH[j]) * e;
+      }
+      paint();
+      if (p < 1) rafId = requestAnimationFrame(step); else snap();
+    }
+    rafId = requestAnimationFrame(step);
+    // 后台标签页里 rAF 会被冻结：兜底 420ms 后直接落位，避免停在中间态
+    setTimeout(snap, 420);
+  }
+
+  function updateHatch() {
+    // 斜纹覆盖整根柱子的高度
+    for (var h = 0; h < hatchRects.length; h++) {
+      var a = idxOf(hatchRects[h].age);
+      if (a < 0) continue;
+      var bot = G.pt + G.plotH;
+      var top = yOf(state.mode === 'abs' ? cur().total[a] : 100);
+      hatchRects[h].rect.setAttribute('y', top.toFixed(2));
+      hatchRects[h].rect.setAttribute('height', Math.max(0.4, bot - top).toFixed(2));
+      hatchRects[h].wash.setAttribute('y', top.toFixed(2));
+      hatchRects[h].wash.setAttribute('height', Math.max(0.4, bot - top).toFixed(2));
+    }
+  }
+
+  /* ============================================================
+     6. 阶段色带（13 → 4 段 + 出生点）
+     ============================================================ */
+  /* 宏观阶段带：人均 4 段；家庭口径按户主年龄裁剪 */
+  function ribbonBands() {
+    var lo = AGES[0], hi = AGES[N - 1];
+    var defs = isHH()
+      ? [{ label: '22–59 在业', short: '在业', a: 22, b: 59 }, { label: '60–85 退休', short: '退休', a: 60, b: 85 }]
+      : [{ label: '0–17 家庭代付', short: '家庭代付', a: 0, b: 17 }, { label: '18–22 大学', short: '大学', a: 18, b: 22 },
+         { label: '23–59 工作', short: '工作', a: 23, b: 59 }, { label: '60–85 退休', short: '退休', a: 60, b: 85 }];
+    var out = [];
+    defs.forEach(function (d) {
+      var a = Math.max(d.a, lo), b = Math.min(d.b, hi);
+      if (b - a < 2) return;
+      var lb = d.label, sh = d.short;
+      if (a !== d.a || b !== d.b) { lb = a + '–' + b + ' ' + sh; }
+      out.push({ label: lb, short: sh, a: a, b: b });
+    });
+    return out;
+  }
+
+  function renderRibbon() {
+    while (gRib.firstChild) gRib.removeChild(gRib.firstChild);
+    ribBands = [];
+    var kr = G.k || 1;
+    var y = G.pt + G.plotH + Math.round(32 * kr), h = Math.round(16 * kr);
+
+    // 底色
+    mk('rect', { x: G.pl, y: y, width: G.plotW, height: h, fill: '#EFEAE1' }, gRib);
+
+    ribbonBands().forEach(function (b, idx) {
+      var x = xOf(idxOf(b.a)), w = (xOf(idxOf(b.b)) + G.barW) - x;
+      var base = idx % 2 ? '#E4DED1' : '#E9E3D6';
+      var rect = mk('rect', { x: x.toFixed(1), y: y, width: Math.max(0, w).toFixed(1), height: h, fill: base }, gRib);
+      if (idx > 0) mk('line', { x1: x.toFixed(1), y1: y - 2, x2: x.toFixed(1), y2: y + h + 2, stroke: '#C2BAAB', 'stroke-width': 1 }, gRib);
+      var tw = textW(b.label, 10.5 * kr), tshort = textW(b.short, 10.5 * kr);
+      var txt = b.label;
+      if (w <= tw + 10 && w > tshort + 8) txt = b.short;
+      if (w > textW(txt, 10.5 * kr) + 8) {
+        var t = mk('text', { 'class': 'rib-t', x: (x + w / 2).toFixed(1), y: (y + 11.4 * kr).toFixed(1), 'text-anchor': 'middle' }, gRib);
+        t.textContent = txt;
+        ribBands.push({ rect: rect, text: t, a: b.a, b: b.b, base: base });
+      } else {
+        ribBands.push({ rect: rect, text: null, a: b.a, b: b.b, base: base });
+      }
+    });
+    // 出生点标记（仅人均口径）
+    if (!isHH() && idxOf(0) >= 0) {
+      mk('line', { x1: xOf(idxOf(0)).toFixed(1), y1: y - 6, x2: xOf(idxOf(0)).toFixed(1), y2: y + h + 5, stroke: '#191817', 'stroke-width': 1.4 }, gRib);
+    }
+  }
+
+  /* ============================================================
+     7. 直接标注
+     ============================================================ */
+  function peakIndex(t) { var pk = 0; for (var i = 1; i < t.length; i++) if (t[i] > t[pk]) pk = i; return pk; }
+
+  /* 11 个叙事节点：标题里的数字全部从当前序列现算，完整句子挂在 <title>（悬停可见） */
+  var ANN_SPEC = [
+    { age: 0, type: 'stage', title: '出生 · 全生最低', text: function (c) {
+        return '出生那年 ' + c.fmt(c.t(0)) + ' 元，是全生最低：托育还没开始，消费只有吃穿用和少量医疗（用品 ' +
+          c.sh('durables', 0) + '%、医疗 ' + c.sh('health', 0) + '%）。之后一路爬升，0–17 岁是「家庭为孩子直接支付的现金」，' +
+          '不是孩子自己的消费。';
+      } },
+    { age: 3, type: 'stage', title: '入园 · +', text: function (c) {
+        var cs = childStats();
+        return '2→3 岁 +' + c.d03 + '%（入托率 3–8% 区间下为 +' + cs.lo.toFixed(1) + ' ~ +' + cs.hi.toFixed(1) + '%）：托育与学前教育从 3 岁起计入教育，教育 ' +
+          c.fmt(c.v('education', 2)) + ' → ' + c.fmt(c.v('education', 3)) + ' 元。托育计入后不再有跳崖；这个百分比完全由' +
+          '「2 岁入托率」一个参数决定。公办 5,000 还是民办 12,000，' +
+          '这一段差 7,000 元，但峰仍在 ' + c.peakAge + ' 岁。';
+      } },
+    { age: 6, type: 'stage', title: '小学 · +', text: function (c) {
+        return '5→6 岁 +' + c.d56 + '%：教育文化娱乐一年增加 ' + c.fmt(c.d56abs) + ' 元，是这一步台阶的主要来源；' +
+          '小学段合计 ' + c.fmt(c.t(6)) + ' 元/年，教育占 ' + c.sh('education', 6) + '%。';
+      } },
+    { age: 15, type: 'peak', title: '高中 · 教育 ', text: function (c) {
+        return '高中教育 ' + c.fmt(c.v('education', 15)) + ' 元，是 0–17 段最高；教育占当年 ' + c.sh('education', 15) + '%，一生最高。';
+      } },
+    { age: 18, type: 'step', title: '大学 · 只降 ', text: function (c) {
+        return '学费 + 住宿 + 生活费 ' + c.fmt(c.t(18)) + ' 元，18–22 岁平四年。只比 17 岁低 ' + c.d18 + '%——口径由「家庭代付」切到「本人消费」，真实降幅已扣除口径差。';
+      } },
+    { age: 23, type: 'stage', title: '毕业 · 居住 ', text: function (c) {
+        return '毕业、进入本人消费口径：总额 ' + c.fmt(c.t(23)) + ' 元，比 22 岁高 ' + c.d23 +
+          '%，是全图唯一向上的大跳（一半是「住校 → 租房」的口径切换）。居住 ' + c.fmt(c.v('housing', 23)) +
+          ' 元、占 ' + c.sh('housing', 23) + '%，仍高于审计先验的 35%。';
+      } },
+    { age: 34, type: 'peak', title: '住房峰值', text: function (c) {
+        return '住房支出在 34 岁见顶：' + c.fmt(c.v('housing', 34)) + ' 元/年，此后单调下降。';
+      } },
+    { age: 46, type: 'peak', role: 'peak', title: '全局峰 · ', text: function (c) {
+        return '全局峰 ' + c.fmt(c.t(46)) + ' 元/年：居住 ' + c.fmt(c.v('housing', 46)) + '、食品 ' + c.fmt(c.v('food', 46)) +
+          '、交通 ' + c.fmt(c.v('transport', 46)) + '、教育 ' + c.fmt(c.v('education', 46)) + '。';
+      } },
+    { age: 60, type: 'step', title: '退休 · 五年 ', text: function (c) {
+        return '退休不是断崖，是一段坡：59→64 五年累计降 ' + c.d64 + '%（' + c.fmt(c.t(59)) + ' → ' + c.fmt(c.t(64)) +
+          ' 元），其中 59→60 只掉 ' + c.d60 + '%。';
+      } },
+    { age: 70, type: 'note', title: '医疗 ', text: function (c) {
+        return '医疗 ' + c.fmt(c.v('health', 70)) + ' 元、占 ' + c.sh('health', 70) + '%，此后一路爬到 85 岁及以上的 ' + c.sh('health', 85) + '%。';
+      } },
+    { age: 85, type: 'note', title: '医疗 ', text: function (c) {
+        var t = '医疗 ' + c.fmt(c.v('health', 85)) + ' 元、占 ' + c.sh('health', 85) + '%，是唯一单调上升的类别。';
+        if (c.split) t += ' 其中 NBS 医疗保健列 ' + c.fmt(c.split.nbs_medical) + ' 元，居家照护另加 ' + c.fmt(c.split.home_care_addon) + ' 元。';
+        return t + ' 含长护的情景见上方开关。';
+      } }
+  ];
+
+  function annList() {
+    if (isHH()) return (RAW.annotations || []).map(function (a) {
+      var c = {}, k; for (k in a) c[k] = a[k];
+      if (c.title === '口径张力') c.title = '最后一年有孩';
+      if (c.title === '空巢断点') c.title = '子女离家';
+      return c;
+    });
+    var t = RAW.total, A = RAW.absolute, ag = AGES;
+    function i(a) { return ag.indexOf(a); }
+    var peak = argmax(t, 0).i;
+    var d18 = Math.abs((t[i(18)] / t[i(17)] - 1) * 100);
+    var d60 = Math.abs((t[i(60)] / t[i(59)] - 1) * 100);
+    var d64 = Math.abs((t[i(64)] / t[i(59)] - 1) * 100);
+    var d23 = Math.abs((t[i(23)] / t[i(22)] - 1) * 100);
+    var d03 = Math.abs((t[i(3)] / t[i(2)] - 1) * 100);
+    var d56 = Math.abs((t[i(6)] / t[i(5)] - 1) * 100);
+    var d56abs = A.education[i(6)] - A.education[i(5)];
+    var trv = t[argmin(t).i];
+    var c = {
+      t: function (a) { return t[i(a)]; },
+      v: function (cat, a) { return A[cat][i(a)]; },
+      sh: function (cat, a) { return (A[cat][i(a)] / t[i(a)] * 100).toFixed(1); },
+      fmt: fmt, d18: d18.toFixed(1), d60: d60.toFixed(1), d64: d64.toFixed(1),
+      d23: d23.toFixed(0), tr: trv, trAge: AGES[argmin(t).i], peakAge: AGES[peak],
+      split: (META && META.medical_85_split) || null
+    };
+    var out = [];
+    ANN_SPEC.forEach(function (d) {
+      var age = d.age;
+      if (d.role === 'peak') age = AGES[peak];
+      if (i(age) < 0) return;
+      var title = d.title, sub = '';
+      if (d.age === 46 || d.role === 'peak') title += (t[i(age)] / 10000).toFixed(1) + ' 万';
+      else if (d.age === 6) title += d56.toFixed(1) + '%';
+      else if (d.age === 3) { var cs2 = childStats(); title += d03.toFixed(1) + '%'; sub = '区间 +' + cs2.lo.toFixed(1) + '~' + cs2.hi.toFixed(1) + '%'; }
+      else if (d.age === 15 || d.age === 70 || d.age === 85) title += c.sh(d.age === 15 ? 'education' : 'health', age) + '%';
+      else if (d.age === 18) title += d18.toFixed(1) + '%';
+      else if (d.age === 23) title += c.sh('housing', age) + '%';
+      else if (d.age === 60) title += '−' + d64.toFixed(1) + '%';
+      var item = { age: age, type: d.type, title: title, text: d.text(c) };
+      if (sub) item.sub = sub;
+      if (d.age === 85) item.full = '85 岁及以上 · 医疗 ' + c.sh('health', 85) + '%';
+      out.push(item);
+    });
+    /* 关掉老年折减 / 加长护时，把差异补在 85 岁那条上，不新增引线 */
+    var last = N - 1, hi = null;
+    if (state.a5 && state.a5 !== A5_BASE) hi = VIS.a5[state.a5].total[last];
+    if (hi != null) {
+      out.forEach(function (a) {
+        if (a.age === AGES[last]) a.text += ' 当前按「' + labOf(VIS.a5, state.a5) + '」计：85 岁及以上 ' + fmt(hi) + ' 元。';
+      });
+    }
+    if (state.ltc && state.ltc !== LTC_BASE) {
+      out.forEach(function (a) {
+        if (a.age === AGES[last]) a.text += ' 当前按「' + labOf(VIS.ltc, state.ltc) + '」计：85 岁及以上医疗 ' + fmt(A.health[last]) + ' 元。';
+      });
+    }
+    return out;
+  }
+
+  /* 18 岁的口径切换：一根细竖线 + 一行小字，不画断崖、不做桥接 */
+  function renderSwitchMarker() {
+    var g = gSwitch;
+    while (g.firstChild) g.removeChild(g.firstChild);
+    if (isHH()) { g.style.display = 'none'; return; }
+    var i = idxOf(18);
+    if (i < 0) return;
+    g.style.display = '';
+    var x = cxOf(i) - G.step / 2;
+    var y0 = G.pt, y1 = G.pt + G.plotH;
+    mk('path', { d: 'M' + x.toFixed(1) + ',' + y0 + ' V' + y1, stroke: '#8A8375', 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: .85 }, g);
+    var t = mk('text', { 'class': 'sw-t', x: (x + 4).toFixed(1), y: (G.pt + 12).toFixed(1), 'text-anchor': 'start' }, g);
+    t.textContent = '18 岁：口径切换';
+  }
+
+  function renderAnn() {
+    while (gAnn.firstChild) gAnn.removeChild(gAnn.firstChild);
+    if (!state.ann) { gAnn.style.display = 'none'; return; }
+    gAnn.style.display = '';
+
+    var levels = G.levels || ANN_LEVELS;
+    var kk = G.k || 1;
+    var occ = [[], [], []];
+    var lastC = [-1e9, -1e9, -1e9];
+    var prevCx = -1e9, prevLv = 0;
+    var keyAges = [argmax(SCEN.base.total, 0).age];   // v2 单峰：只有一个峰点标记
+    var troughAge = argmin(SCEN.base.total).age;        // 谷点（v4：0 岁）
+    var list = annList().sort(function (a, b) { return a.age - b.age; });
+
+    list.forEach(function (an) {
+      // 家庭口径横轴是户主年龄：落在轴外的注释（如 0–17 岁）整条不画，绝不挪位
+      var i = idxOf(an.age);
+      if (i < 0) return;
+      var cx = cxOf(i);
+      /* 标签宽度预算：太长的标题会横跨五六个年龄点、把邻居挤到同一层叠字。
+         超预算就先砍掉「：」后面的解释（完整句子在 <title> 里），再不行才加省略号。 */
+      var maxW = Math.max(110, Math.min(G.step * 10, 280));
+      var label = an.age + ' 岁 · ' + an.title;
+      if (an.full && textW(an.full, 11 * kk) <= maxW) label = an.full;
+      if (textW(label, 11 * kk) > maxW) {
+        var cut = label.split('：')[0];
+        if (textW(cut, 11 * kk) <= maxW) label = cut;
+        else {
+          while (cut.length > 4 && textW(cut + '…', 11 * kk) > maxW) cut = cut.slice(0, -1);
+          label = cut + '…';
+        }
+      }
+      var w = textW(label, 11 * kk) + 6;
+      var right = true, x1 = cx + 6, x2 = cx + 6 + w;
+      if (x2 > G.W - 8) { right = false; x1 = cx - 6 - w; x2 = cx - 6; }
+
+      /* 分层：先按「同簇只往下走」找位置（0→3→4 的阶梯读起来顺），
+         找不到再放宽到任意层；都放不下才退到最右边空隙最大的一层，绝不再一律丢到最底层造成叠字。 */
+      var lv = -1;
+      var cluster = (cx - prevCx) < 140;
+      function fitsLevel(l) {
+        if (cx - lastC[l] < 62) return false;      // 同层上一条挨得太近：换层，避免引线粘连
+        for (var o = 0; o < occ[l].length; o++) {
+          if (!(x2 < occ[l][o][0] - 10 || x1 > occ[l][o][1] + 10)) return false;
+        }
+        return true;
+      }
+      for (var pass = 0; pass < 2 && lv < 0; pass++) {
+        for (var l = 0; l < levels.length; l++) {
+          if (pass === 0 && cluster && l < prevLv) continue;
+          if (!fitsLevel(l)) continue;
+          lv = l; break;
+        }
+      }
+      if (lv < 0) {                                 // 兜底：选上一条右边界最靠左的一层
+        lv = 0;
+        for (var l2 = 1; l2 < levels.length; l2++) {
+          var a = occ[l2].length ? occ[l2][occ[l2].length - 1][1] : -1e9;
+          var b = occ[lv].length ? occ[lv][occ[lv].length - 1][1] : -1e9;
+          if (a < b) lv = l2;
+        }
+      }
+      occ[lv].push([x1, x2]);
+      lastC[lv] = cx; prevCx = cx; prevLv = lv;
+      var key = an.type === 'peak' && keyAges.indexOf(an.age) >= 0;
+      var isTr = an.age === troughAge;                  // 谷点：加粗 + 空心倒三角
+
+      var ly = levels[lv];
+      if (an.text) {
+        var ti = mk('title', {}, gAnn);
+        ti.textContent = an.title + '：' + an.text;
+      }
+      var t = mk('text', { 'class': 'ann-t' + (key || isTr ? ' key' : ''), x: (right ? cx + 6 : cx - 6).toFixed(1), y: ly, 'text-anchor': right ? 'start' : 'end' }, gAnn);
+      t.textContent = label;
+      // 引线：从文字底边（不是基线）垂直落到绘图区上沿，始终留 4px 空隙，不穿越柱体
+      var bb = t.getBBox();
+      var y0 = bb.y + bb.height + 4;
+      var sub = an.sub || '';
+      if (sub) {   // 区间等副行：主标签下面一行 9.5px 小字，避免主标签被宽度预算截断
+        var st = mk('text', { 'class': 'ann-s', x: (right ? cx + 6 : cx - 6).toFixed(1), y: (ly + 13).toFixed(1), 'text-anchor': right ? 'start' : 'end' }, gAnn);
+        st.textContent = sub;
+        var sb = st.getBBox();
+        y0 = sb.y + sb.height + 3;
+      }
+      var ln = mk('path', {
+        'class': 'ann-line' + (key || isTr ? ' key' : ''),
+        d: 'M' + cx.toFixed(1) + ',' + y0.toFixed(1) + ' V' + (G.pt - 4).toFixed(1)
+      }, gAnn);
+      gAnn.insertBefore(ln, t);
+      var dot = mk('circle', { cx: cx.toFixed(1), cy: (G.pt - 4).toFixed(1), r: (key || isTr) ? 3 : 2.2, fill: '#191817' }, gAnn);
+      gAnn.insertBefore(dot, t);
+      if (isTr) {  // 谷点：空心倒三角，压在绘图区上沿，指向下
+        var tr = mk('path', {
+          'class': 'ann-tip down',
+          d: 'M' + (cx - 4).toFixed(1) + ',' + (G.pt + 2).toFixed(1) + ' L' + (cx + 4).toFixed(1) + ',' + (G.pt + 2).toFixed(1) +
+             ' L' + cx.toFixed(1) + ',' + (G.pt + 9).toFixed(1) + ' Z'
+        }, gAnn);
+        gAnn.insertBefore(tr, t);
+      }
+      if (key) {   // 峰点上方的小三角
+        var tip = mk('path', {
+          'class': 'ann-tip',
+          d: 'M' + (cx - 4).toFixed(1) + ',' + (G.pt - 16).toFixed(1) + ' L' + (cx + 4).toFixed(1) + ',' + (G.pt - 16).toFixed(1) +
+             ' L' + cx.toFixed(1) + ',' + (G.pt - 9).toFixed(1) + ' Z'
+        }, gAnn);
+        gAnn.insertBefore(tip, t);
+      }
+    });
+  }
+
+  /* 来源列表：A 绿 / B 黄 / C 灰，跟着当前口径走（人均 10 条 / 每户 16 条） */
+  function buildSources() {
+    var ul = $('#sources');
+    if (!ul) return;
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
+    (RAW.sources || []).forEach(function (s) {
+      var li = document.createElement('li');
+      var b = document.createElement('span');
+      b.className = 'badge ' + (s.level || 'C');
+      b.textContent = s.level || 'C';
+      var d = document.createElement('div');
+      var nm = document.createElement('span');
+      nm.className = 'sl';
+      nm.textContent = s.label || '';
+      d.appendChild(nm);
+      if (s.url) {
+        var a = document.createElement('a');
+        a.href = s.url; a.textContent = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        d.appendChild(a);
+      }
+      if (s.use) {
+        var u = document.createElement('span');
+        u.className = 'su'; u.textContent = s.use;
+        d.appendChild(u);
+      }
+      li.appendChild(b); li.appendChild(d);
+      ul.appendChild(li);
+    });
+  }
+
+  /* ============================================================
+     8. hover / pin
+     ============================================================ */
+  function setHover(i, fromKeyboard) {
+    state.hover = i;
+    showTip(i);
+    refreshSel();
+    if (fromKeyboard) {
+      var lg = $('#srLive');
+      if (lg) lg.textContent = i + ' 岁，合计 ' + fmt(cur().total[i]) + ' 元';
+    }
+  }
+  function clearHover() {
+    state.hover = null;
+    tip.classList.remove('show');
+    tip.setAttribute('aria-hidden', 'true');
+    refreshSel();
+  }
+  function togglePin(i) {
+    state.pinned = (state.pinned === i) ? null : i;
+    if (state.pinned !== null) state.hover = i;
+    renderCard();
+    refreshSel();
+  }
+
+  function showTip(i) {
+    var s = cur(), tot = s.total[i] || 1;
+    var rows = '';
+    for (var c = 0; c < 8; c++) {
+      var cat = CATS[c], v = s.abs[cat.id][i], sh = v / tot;
+      var main = state.mode === 'abs' ? fmt(v) : pct(sh) + '%';
+      var side = state.mode === 'abs' ? pct(sh) + '%' : fmt(v);
+      rows += '<div class="tr-row"><span class="sq" style="background:' + cat.color + '"></span>' +
+        '<span class="nm">' + cat.label + '</span>' +
+        '<span class="vl">' + main + '</span>' +
+        '<span class="pc">' + side + '</span></div>';
+    }
+    var head = state.mode === 'abs'
+      ? '<span class="tip-tot">' + fmt(tot) + '<span class="u">元</span></span>'
+      : '<span class="tip-tot">100.0<span class="u">%</span></span>';
+    var sub = state.mode === 'abs'
+      ? s.name + ' · 占当年支出的百分比见右列'
+      : s.name + ' · 合计 ' + fmt(tot) + ' 元';
+
+    tip.innerHTML = '<div class="tip-h"><span class="tip-age">' + AGES[i] + ' 岁</span>' + head + '</div>' +
+      '<div class="tip-sub">' + sub + '</div><div class="tip-rows">' + rows + '</div>';
+    tip.classList.add('show');
+    tip.setAttribute('aria-hidden', 'false');
+
+    var w = tip.offsetWidth || 284;
+    var cx = cxOf(i) + (wrap.scrollLeft || 0);
+    var left = clamp(cx - w / 2, 4, Math.max(4, G.W - w - 4));
+    tip.style.transform = 'translateX(' + left.toFixed(1) + 'px)';
+  }
+
+  function refreshSel() {
+    // 高亮带
+    var i = state.hover !== null ? state.hover : state.pinned;
+    if (i === null || i === undefined) {
+      bandRect.setAttribute('opacity', '0');
+      pinRule.setAttribute('opacity', '0');
+    } else {
+      bandRect.setAttribute('x', (xOf(i) - 1.2).toFixed(1));
+      bandRect.setAttribute('y', G.pt);
+      bandRect.setAttribute('width', (G.barW + 2.4).toFixed(1));
+      bandRect.setAttribute('height', G.plotH);
+      bandRect.setAttribute('opacity', '0.055');
+      if (state.pinned !== null) {
+        pinRule.setAttribute('x', (xOf(i) - 0.6).toFixed(1));
+        pinRule.setAttribute('y', (G.pt + G.plotH + 1).toFixed(1));
+        pinRule.setAttribute('width', (G.barW + 1.2).toFixed(1));
+        pinRule.setAttribute('height', '2');
+        pinRule.setAttribute('opacity', '1');
+      } else {
+        pinRule.setAttribute('opacity', '0');
+      }
+    }
+    // x 轴标签
+    var ha = state.hover !== null ? AGES[state.hover] : null;
+    var pa = state.pinned !== null ? AGES[state.pinned] : null;
+    for (var k = 0; k < axisLabels.length; k++) {
+      var a = +axisLabels[k].getAttribute('data-age');
+      var on = (ha !== null && a === ha) || (pa !== null && a === pa);
+      axisLabels[k].classList.toggle('on', on);
+    }
+    // 阶段带
+    var ref = ha !== null ? ha : pa;
+    ribBands.forEach(function (b) {
+      var active = ref !== null && ref >= b.a && ref <= b.b;
+      b.rect.setAttribute('fill', active ? '#D9D2C3' : b.base);
+      if (b.text) b.text.classList.toggle('on', active);
+    });
+    // solo 数值
+    updateSoloLabel();
+  }
+
+  function updateSoloLabel() {
+    var i = state.hover !== null ? state.hover : state.pinned;
+    if (!state.solo || i === null || i === undefined) { gSolo.textContent = ''; return; }
+    var ci = -1;
+    for (var c = 0; c < 8; c++) if (CATS[c].id === state.solo) ci = c;
+    if (ci < 0) { gSolo.textContent = ''; return; }
+    var s = cur(), tot = s.total[i] || 1;
+    var v = s.abs[CATS[ci].id][i];
+    var val = state.mode === 'abs' ? v : (v / tot) * 100;
+    // 该段顶部
+    var acc = 0;
+    for (var j = 0; j < ci; j++) acc += state.mode === 'abs' ? s.abs[CATS[j].id][i] : (s.abs[CATS[j].id][i] / tot) * 100;
+    var yTop = yOf(acc + val);
+    gSolo.setAttribute('x', cxOf(i).toFixed(1));
+    gSolo.setAttribute('y', Math.max(G.pt + 6, yTop - 5).toFixed(1));
+    gSolo.textContent = (state.mode === 'abs' ? fmt(v) + ' 元' : pct(v / tot) + '%') + ' · ' + pct(v / tot) + '%';
+    if (state.mode !== 'abs') gSolo.textContent = pct(v / tot) + '%';
+  }
+
+  /* 鼠标 */
+  gOver.addEventListener('pointermove', function (e) {
+    var r = svg.getBoundingClientRect();
+    var scale = r.width / G.W;
+    var x = (e.clientX - r.left) / scale;
+    var y = (e.clientY - r.top) / scale;
+    if (y < G.pt - 6 || y > G.pt + G.plotH + 6) { clearHover(); return; }
+    var i = Math.floor((x - G.pl) / G.step);
+    if (i < 0 || i >= N) { clearHover(); return; }
+    if (i !== state.hover) setHover(i);
+  });
+  gOver.addEventListener('pointerleave', function () {
+    if (state.pinned === null) clearHover();
+    else { state.hover = null; tip.classList.remove('show'); refreshSel(); }
+  });
+  gOver.addEventListener('click', function (e) {
+    var r = svg.getBoundingClientRect();
+    var scale = r.width / G.W;
+    var x = (e.clientX - r.left) / scale;
+    var i = Math.floor((x - G.pl) / G.step);
+    if (i >= 0 && i < N) togglePin(i);
+  });
+
+  /* ============================================================
+     9. 图例 / solo
+     ============================================================ */
+  function buildLegend() {
+    var box = $('#legend');
+    box.innerHTML = '';
+    CATS.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lg';
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('data-cat', c.id);
+      b.innerHTML = '<span class="sq" style="background:' + c.color + '"></span><span>' + c.label + '</span>';
+      b.addEventListener('click', function () {
+        state.solo = (state.solo === c.id) ? null : c.id;
+        applySolo();
+      });
+      box.appendChild(b);
+    });
+    applySolo();
+  }
+
+  function applySolo() {
+    for (var c = 0; c < 8; c++) {
+      var o = (!state.solo || state.solo === CATS[c].id) ? '1' : '0.08';
+      for (var i = 0; i < N; i++) barGroups[i].rects[c].setAttribute('opacity', o);
+    }
+    var btns = document.querySelectorAll('.lg');
+    for (var b = 0; b < btns.length; b++) {
+      var on = state.solo === btns[b].getAttribute('data-cat');
+      btns[b].classList.toggle('solo', on);
+      btns[b].classList.toggle('dim', !!state.solo && !on);
+      btns[b].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    updateSoloLabel();
+    if (state.hover !== null) showTip(state.hover);
+  }
+
+  /* ============================================================
+     10. 详情卡
+     ============================================================ */
+  var card = $('#card');
+  function renderCard() {
+    var i = state.pinned;
+    var under = $('#under'), hint = $('#hintLine');
+    if (i === null) {
+      card.hidden = true;
+      card.className = 'card';
+      card.innerHTML = '';
+      if (under) under.classList.add('no-card');
+      if (hint) { hint.hidden = false; hint.innerHTML = '点击任意一根柱子可以<b>钉住那一年</b>的构成，再点一次取消；Tab 聚焦柱子、回车钉住。数字单位是「' + UNIT + '」。'; }
+      return;
+    }
+    card.hidden = false;
+    card.className = 'card';
+    if (under) under.classList.remove('no-card');
+    if (hint) hint.hidden = true;
+    var s = cur(), tot = s.total[i] || 1;
+    var rows = '';
+    for (var c = 0; c < 8; c++) {
+      var cat = CATS[c], v = s.abs[cat.id][i];
+      rows += '<div class="cr"><span class="sq" style="background:' + cat.color + '"></span>' +
+        '<span class="nm">' + cat.label + '</span>' +
+        '<span class="vl">' + fmt(v) + '</span>' +
+        '<span class="pc">' + pct(v / tot) + '%</span></div>';
+    }
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="card-h"><div class="card-age">' + AGES[i] + '<span class="u">岁</span></div>' +
+      '<button type="button" class="card-x" id="unpin">取消钉住 ×</button></div>' +
+      '<div class="card-tot">' + fmt(tot) + '<span class="u">' + UNIT + '</span></div>' +
+      '<div class="card-sub">' + s.name + ' · ' + (isHH() ? '家庭总支出' : (AGES[i] <= 17 ? '家庭代付口径' : '本人消费口径')) + '</div>' +
+      '<div class="card-rows">' + rows + '</div>' +
+      '<div class="nav"><button type="button" id="prevAge"' + (i <= 0 ? ' disabled' : '') + '>← ' + AGES[Math.max(0, i - 1)] + ' 岁</button>' +
+      '<button type="button" id="nextAge"' + (i >= N - 1 ? ' disabled' : '') + ' style="margin-left:auto">' + AGES[Math.min(N - 1, i + 1)] + ' 岁 →</button></div>';
+    $('#unpin').addEventListener('click', function () { state.pinned = null; renderCard(); refreshSel(); });
+    var pv = $('#prevAge'), nx = $('#nextAge');
+    if (pv) pv.addEventListener('click', function () { if (i > 0) { state.pinned = i - 1; state.hover = i - 1; renderCard(); refreshSel(); showTip(i - 1); } });
+    if (nx) nx.addEventListener('click', function () { if (i < N - 1) { state.pinned = i + 1; state.hover = i + 1; renderCard(); refreshSel(); showTip(i + 1); } });
+  }
+
+  /* ============================================================
+     11. 表格视图
+     ============================================================ */
+  var tvBuilt = false;
+  function buildTable() {
+    var s = cur();
+    var h = '<table><thead><tr><th scope="col">年龄</th><th scope="col">合计</th>';
+    CATS.forEach(function (c) { h += '<th scope="col">' + c.label + '</th>'; });
+    h += '</tr></thead><tbody>';
+    for (var i = 0; i < N; i++) {
+      h += '<tr data-i="' + i + '"><td>' + AGES[i] + '</td><td>' + fmt(s.total[i]) + '</td>';
+      for (var c = 0; c < 8; c++) h += '<td>' + fmt(s.abs[CATS[c].id][i]) + '</td>';
+      h += '</tr>';
+    }
+    h += '</tbody></table><p class="tv-cap">单位：' + UNIT + '，' + s.name + '。表头与首列在滚动时固定。</p>';
+    var box = $('#tableview');
+    box.innerHTML = h;
+    box.querySelectorAll('tbody tr').forEach(function (tr) {
+      tr.addEventListener('click', function () {
+        var a = +tr.getAttribute('data-i');
+        state.pinned = a; state.hover = a; renderCard(); refreshSel();
+        box.querySelectorAll('tr.pin').forEach(function (x) { x.classList.remove('pin'); });
+        tr.classList.add('pin');
+      });
+    });
+    tvBuilt = true;
+  }
+
+  $('#tableToggle').addEventListener('click', function () {
+    state.table = !state.table;
+    if (state.table && !tvBuilt) buildTable();
+    $('#tableview').hidden = !state.table;
+    wrap.style.display = state.table ? 'none' : '';
+    this.classList.toggle('on', state.table);
+    this.setAttribute('aria-pressed', state.table ? 'true' : 'false');
+    this.textContent = state.table ? '图表视图' : '表格视图';
+    if (!state.table) layout();
+  });
+
+  /* ============================================================
+     12. 控制条
+     ============================================================ */
+  if (HOUSE) {
+    var bc = $('#basisCtl');
+    if (bc) bc.hidden = false;
+    var mhh = $('#mHh');
+    if (mhh) mhh.hidden = false;
+  }
+  document.querySelectorAll('.seg button[data-basis]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-basis');
+      if (state.basis === v) return;
+      document.querySelectorAll('.seg button[data-basis]').forEach(function (x) {
+        var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      applyBasis(v);
+    });
+  });
+
+  document.querySelectorAll('.seg button[data-mode]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (state.mode === b.getAttribute('data-mode')) return;
+      state.mode = b.getAttribute('data-mode');
+      document.querySelectorAll('.seg button[data-mode]').forEach(function (x) {
+        var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      renderAxis(); renderAnn(); updateBars(true, function () { renderAnn(); });
+      updateHatch(); refreshSel();
+      if (state.hover !== null) showTip(state.hover);
+    });
+  });
+
+  document.querySelectorAll('.seg button[data-scen]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-scen');
+      if (state.scen === k) return;
+      var yNew = axisFor(k);
+      state.scen = k;
+      document.querySelectorAll('.seg button[data-scen]').forEach(function (x) {
+        var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      /* 每户口径的轴随情景变：过渡期间先用较大的那把尺子，柱子不会冲出画布；
+         落位后再收回到本情景的上限，并重画网格。 */
+      if (yNew !== Y_MAX_ABS) { Y_MAX_ABS = Math.max(Y_MAX_ABS, yNew); renderAxis(); }
+      updateBars(true, function () {
+        if (Y_MAX_ABS !== yNew) { Y_MAX_ABS = yNew; updateBars(false); renderAxis(); }
+        renderAnn();
+      });
+      updateVerdict();
+      updateHatch(); renderCard(); refreshSel();
+      if (state.hover !== null) showTip(state.hover);
+    });
+  });
+
+  $('#annToggle').addEventListener('change', function () {
+    state.ann = this.checked;
+    renderAnn();
+  });
+
+  /* ============================================================
+     13. 启动
+     ============================================================ */
+  function ariaLabel() {
+    var t = RAW.total;
+    var mn = 0, mx = 0;
+    for (var i = 1; i < N; i++) { if (t[i] < t[mn]) mn = i; if (t[i] > t[mx]) mx = i; }
+    return (isHH() ? '上海家庭按户主年龄的消费结构' : '一个上海人的一生，每年要花多少钱') +
+      '。' + AGES[0] + ' 到 ' + AGES[N - 1] + ' 岁共 ' + N + ' 根堆叠柱，每根按 8 类支出堆叠，单位' + UNIT + '。' +
+      '最高的是 ' + AGES[mx] + ' 岁 ' + fmt(t[mx]) + ' 元，最低的是 ' + AGES[mn] + ' 岁 ' + fmt(t[mn]) + ' 元。' +
+      (isHH() ? '' : '0–17 岁为家庭代付口径。') + '可用表格视图逐格读取，或用 Tab 聚焦每根柱子。';
+  }
+
+  function updateCopy() {
+    if (isHH()) {
+      $('#dek').textContent = '22–85 岁户主年龄 · 2024 年上海价 · 元/户/年';
+      $('#lede').textContent = '换一种算法：把一户人家一整年的开销按户主年龄排开。孩子长大时户均最高，子女离家后掉下来，退休再掉一次。';
+      $('#fig-h').textContent = '按户主年龄的家庭年支出堆叠柱图';
+      $('#figcap').innerHTML = '每户口径：横轴是<b>户主年龄</b>，柱高是一户人家一年的总支出（元/户/年）。' +
+        '家庭规模随户主年龄先升后降，所以每户曲线与人均曲线形状不同；本口径没有「家庭代付」标记，因为它本来就是全家花掉的钱。';
+    } else {
+      $('#dek').textContent = '0–85 岁逐年消费结构 · 2024 年上海价 · 元/人/年';
+      $('#lede').textContent = '模型里最贵的不是养娃那几年，是四十几岁那一段。';
+      $('#fig-h').textContent = '0–85 岁逐年消费结构堆叠柱图';
+      var t = RAW.total, ag = AGES;
+      var i17 = idxOf(17), i18 = idxOf(18);
+      var d18 = (i17 >= 0 && i18 >= 0) ? Math.abs((t[i18] / t[i17] - 1) * 100).toFixed(1) + '%' : '一点';
+      $('#figcap').innerHTML = '0–17 岁的柱子上覆有<b>斜纹</b>：那 18 根柱子是「家庭代付」口径——家庭为一个孩子一年的支出，不是孩子自己的收入。' +
+        '18 岁起切换为本人消费（图中 18 岁处的细竖线），只降 ' + d18 + '——真实降幅已扣除口径差。';
+    }
+    $('#totalUnit').textContent = UNIT;
+    var hw = $('#hhWarn');
+    if (hw) {
+      hw.hidden = !isHH();
+      if (isHH() && HOUSE && HOUSE.meta) {
+        var hm = HOUSE.meta;
+        if ($('#hwWm')) $('#hwWm').textContent = fmt(hm.weighted_mean);
+        if ($('#hwAnc')) $('#hwAnc').textContent = fmt(hm.anchor_household);
+        if ($('#hwDev')) {
+          var dvv = (hm.weighted_mean / hm.anchor_household - 1) * 100;
+          $('#hwDev').textContent = (dvv >= 0 ? '+' : '−') + Math.abs(dvv).toFixed(2);
+        }
+      }
+    }
+  }
+
+  /* 标题下那句判断：跟着峰值走，不给写死的结论 */
+  function updateVerdict() {
+    var el = $('#verdict');
+    if (!el) return;
+    var t = RAW.total, ag = AGES;
+    var pk = argmax(t, 0), tr = argmin(t);
+    var i59 = idxOf(59), i60 = idxOf(60);
+    var d60 = (i59 >= 0 && i60 >= 0) ? (t[i60] / t[i59] - 1) * 100 : null;
+    if (isHH()) {
+      el.textContent = '模型里户均支出最高的一段在 ' + pk.age + ' 岁前后（' + fmt(pk.v) + ' 元／户／年），最低的是 ' + tr.age +
+        ' 岁（' + fmt(tr.v) + ' 元），相差 ' + (pk.v / tr.v).toFixed(1) + ' 倍。';
+      return;
+    }
+    var pre = 0;   // 学龄前（0–5 岁）最低点：谷落在 0 岁还是 2 岁随入托率翻转，不锁死在某一年
+    for (var q = 1; q < ag.length && ag[q] <= 5; q++) if (t[q] < t[pre]) pre = q;
+    var s = '模型里最贵的一段在 ' + pk.age + ' 岁前后（' + fmt(pk.v) + ' 元／人／年）；最便宜的是' +
+      (tr.age <= 5 ? '学龄前（' + ag[pre] + ' 岁最省，' + fmt(t[pre]) + ' 元）' : tr.age + ' 岁（' + fmt(tr.v) + ' 元）');
+    s += tr.age <= 5 ? '——托育还没开始，之后一路爬升；三档入托率下谷都落在 0 岁。' : '。';
+    var i64 = idxOf(64);
+    if (i59 >= 0 && i64 >= 0) {
+      s += ' 退休前后：59 到 64 五年降 ' + Math.abs((t[i64] / t[i59] - 1) * 100).toFixed(1) + '%。';
+    }
+    el.textContent = s;
+  }
+
+  /* 敏感性控件：数据不存在就整行不出现，不做禁用按钮 */
+  /* 退休缓坡端点：这份敏感性只给汇总统计（没有 86×8 的 absolute），不能驱动曲线，
+     所以不造「点了没反应」的假按钮，改成控制条下方一行带数字的注脚。 */
+  /* 入托率：2→3 岁台阶的高度完全由「2 岁入托率」决定；三档只给汇总统计，不驱动曲线 */
+  function childStats() {
+    var v = VIS.childcare, out = [];
+    if (v) {
+      Object.keys(v).forEach(function (k) {
+        var o = v[k] || {}, val = o.pct_2_3 != null ? o.pct_2_3 : o.drop_2_3_pct;
+        if (val == null) return;
+        var lab = String(o.label || k);
+        var mm = lab.match(/三岁均值\s*([0-9.]+%)/);
+        var rate = mm ? mm[1] : '';
+        var name = (lab.split('：')[1] || k).replace(/[，,].*$/, '').replace(/情景$/, '').trim() || k;
+        out.push({ name: name, rate: rate, val: Math.abs(val) });
+      });
+    }
+    if (!out.length) out = [{ name: '低入托', rate: '5%', val: 10.1 }, { name: '基准', rate: '11%', val: 8.6 }, { name: '高入托', rate: '', val: 1.8 }];
+    out.sort(function (a, b) { return b.val - a.val; });
+    var vals = out.map(function (o) { return o.val; });
+    return { list: out, lo: Math.min.apply(null, vals), hi: Math.max.apply(null, vals) };
+  }
+
+  function buildChildcare() {
+    var el = $('#childLine');
+    if (!el) return;
+    var cs = childStats(), bi = 0;
+    cs.list.forEach(function (o, i) { if (Math.abs(o.val - 8.6) < Math.abs(cs.list[bi].val - 8.6)) bi = i; });
+    var parts = cs.list.map(function (o, i) {
+      var t = o.name + (o.rate ? '（三岁均值 ' + o.rate + '）' : '') + ' → +' + o.val.toFixed(1) + '%';
+      return i === bi ? '<span class="cur">' + t + '（本页）</span>' : t;
+    });
+    el.innerHTML = '入托率三档：2→3 岁台阶只在 ' + parts.join(' ／ ') + ' 之间移动；三档下 30–39 岁只差 0.06%——它是局部参数，只动 0–3 段，不是全表平移。三档的谷都在 0 岁（31,444 / 31,540 / 31,780 元）。';
+    el.hidden = false;
+  }
+
+  function buildGlide() {
+    var el = $('#glideLine');
+    if (!el) return;
+    var ids = Object.keys(VIS.glide || {}).filter(function (id) {
+      var v = VIS.glide[id];
+      return v && v.peak_to_trough != null && v.retire_end_value != null;
+    });
+    if (!ids.length) { el.hidden = true; return; }
+    ids.sort(function (a, b) { return VIS.glide[a].retire_end_value - VIS.glide[b].retire_end_value; });
+    var basePt = (RAW.meta && RAW.meta.peak_to_trough) || 0;
+    var parts = ids.map(function (id) {
+      var v = VIS.glide[id], cur = Math.abs(v.peak_to_trough - basePt) < 0.005;
+      var txt = '<b>' + (+v.retire_end_value).toFixed(2) + '</b> → 五年 −' + Math.abs(v.cum_59_64_pct).toFixed(1) +
+        '%、85 岁 ' + (v.total_85 / 10000).toFixed(2) + ' 万、峰谷比 ' + (+v.peak_to_trough).toFixed(2) + '×';
+      return cur ? '<span class="cur">' + txt + '（本页）</span>' : txt;
+    });
+    el.innerHTML = '退休缓坡端点 ρ_end（只改 59 岁之后的形状，三档都归一化到 54,980 元）：' + parts.join('；') + '。';
+    el.hidden = false;
+  }
+
+  function buildSens() {
+    var row = $('#sensRow');
+    if (!row) return;
+    var hasAny = !!(KG_IDS || A5_IDS || LTC_IDS) || !!(VIS.glide && Object.keys(VIS.glide).length);
+    row.hidden = !hasAny || isHH();
+    buildSeg('#kgSeg', '#kgCtl', 'kindergarten', KG_IDS, KG_BASE);
+    buildSeg('#a5Seg', '#a5Ctl', 'a5', A5_IDS, A5_BASE);
+    buildSeg('#ltcSeg', '#ltcCtl', 'ltc', LTC_IDS, LTC_BASE);
+    buildChildcare();
+    buildGlide();
+  }
+
+  function buildSeg(segSel, ctlSel, kind, ids, baseId) {
+    var ctl = $(ctlSel), seg = $(segSel);
+    if (!ctl || !seg) return;
+    ctl.hidden = !ids;
+    if (!ids) return;
+    var curId = (kind === 'kindergarten' ? state.kg : kind === 'a5' ? state.a5 : state.ltc) || baseId || ids[0];
+    if (seg.childNodes.length === ids.length) {
+      seg.querySelectorAll('button').forEach(function (x) {
+        var on = x.getAttribute('data-vid') === curId;
+        x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      return;
+    }
+    while (seg.firstChild) seg.removeChild(seg.firstChild);
+    ids.forEach(function (id) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('data-vid', id);
+      b.textContent = shortLab(kind, id, baseId);
+      b.title = labOf(SENS[kind], id);
+      var on = id === curId;
+      if (on) b.className = 'on';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.addEventListener('click', function () { setSens(kind, id, seg, baseId); });
+      seg.appendChild(b);
+    });
+  }
+
+  function setSens(kind, id, seg, baseId) {
+    var v = (id === baseId) ? null : id;
+    if (kind === 'kindergarten') state.kg = v; else if (kind === 'a5') state.a5 = v; else state.ltc = v;
+    seg.querySelectorAll('button').forEach(function (x) {
+      var on = x.getAttribute('data-vid') === id;
+      x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    applyBasis(state.basis, true);   // 换假设直接换曲线，不做平滑过渡
+  }
+
+  /* 切换口径：整图重建（数据集本身换了，不是只改属性） */
+  function applyBasis(basis, instant) {
+    if (basis === 'hh' && !HOUSE) return;
+    state.basis = basis;
+    state.solo = null;
+    bindBasis(basis);
+    updateCopy();
+    updateVerdict();
+    buildSens();
+    buildSources();
+    svg.setAttribute('aria-label', ariaLabel());
+    buildBars();
+    buildLegend();
+    buildTable();
+    layout();
+    renderStats();
+    renderCard();
+    updateHatch();
+    if (instant || RM) { updateBars(false); renderAnn(); }
+    else {
+      computeTargets();
+      var sY = curY.slice(0), sH = curH.slice(0), t0 = 0, done = false;
+      function fin() { if (done) return; done = true; cancelAnimationFrame(rafId); for (var j = 0; j < N * 8; j++) { curY[j] = tgtY[j]; curH[j] = tgtH[j]; } paint(); renderAnn(); }
+      function step(now) {
+        if (done) return;
+        if (!t0) t0 = now;
+        var p = Math.min(1, (now - t0) / 320), e = 1 - Math.pow(1 - p, 3);
+        for (var j = 0; j < N * 8; j++) { curY[j] = sY[j] + (tgtY[j] - sY[j]) * e; curH[j] = sH[j] + (tgtH[j] - sH[j]) * e; }
+        paint();
+        if (p < 1) rafId = requestAnimationFrame(step); else fin();
+      }
+      rafId = requestAnimationFrame(step);
+      setTimeout(fin, 420);
+    }
+  }
+
+  function boot() {
+    bindBasis('person');
+    updateCopy();
+    updateVerdict();
+    buildSens();
+    buildSources();
+    renderStats();
+    buildBars();
+    buildLegend();
+    buildTable();
+    svg.setAttribute('aria-label', ariaLabel());
+    layout();
+
+    // 入场：从 0 长起
+    for (var k = 0; k < N * 8; k++) { curY[k] = G.pt + G.plotH; curH[k] = 0; }
+    paint();
+    updateHatch();
+
+    if (RM) { updateBars(false); renderAnn(); }
+    else {
+      computeTargets();
+      var sY = curY.slice(0), sH = curH.slice(0), t0 = 0, doneGrow = false;
+      function finishGrow() {
+        if (doneGrow) return;
+        doneGrow = true;
+        cancelAnimationFrame(rafId);
+        for (var j2 = 0; j2 < N * 8; j2++) { curY[j2] = tgtY[j2]; curH[j2] = tgtH[j2]; }
+        paint();
+        renderAnn();
+      }
+      function grow(now) {
+        if (doneGrow) return;
+        if (!t0) t0 = now;
+        var p = Math.min(1, (now - t0) / 620);
+        var e = 1 - Math.pow(1 - p, 3);
+        for (var j = 0; j < N * 8; j++) {
+          curY[j] = sY[j] + (tgtY[j] - sY[j]) * e;
+          curH[j] = sH[j] + (tgtH[j] - sH[j]) * e;
+        }
+        paint();
+        if (p < 1) rafId = requestAnimationFrame(grow);
+        else finishGrow();
+      }
+      rafId = requestAnimationFrame(grow);
+      setTimeout(finishGrow, 760);   // rAF 冻结时的兜底
+    }
+
+    // sr 直播区
+    var live = document.createElement('div');
+    live.id = 'srLive'; live.className = 'sr'; live.setAttribute('aria-live', 'polite');
+    document.body.appendChild(live);
+
+    // resize
+    /* 两条通路：ResizeObserver（元素尺寸变化，含窗口缩放、滚动条出现）+ window.resize（兜底）。
+       第一个事件立即重排，随后 120ms 内的连续事件合并——拖窗口时既跟手，又不会每次都重排注释。 */
+    var lastW = 0, rzT = 0, rzLast = 0;
+    function relayout(force) {
+      var w = Math.round(wrap.clientWidth);
+      if (!force && Math.abs(w - lastW) < 1.5) return;
+      lastW = w;
+      if (state.table) return;
+      layout();
+    }
+    function onResize() {
+      var now = Date.now();
+      if (now - rzLast > 120) { rzLast = now; relayout(true); }
+      clearTimeout(rzT);
+      rzT = setTimeout(function () { rzLast = Date.now(); relayout(false); }, 120);
+    }
+    var ro = new ResizeObserver(function () { relayout(false); });
+    ro.observe(wrap);
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    /* 从后台标签页切回来、或页面从打印预览 / bfcache 恢复时，补一次重排 */
+    window.addEventListener('load', function () { relayout(true); });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) relayout(true); });
+    lastW = Math.round(wrap.clientWidth);
+
+    // 打印：展开方法论
+    var wasOpen = false;
+    window.addEventListener('beforeprint', function () {
+      var d = $('#methodDetails');
+      wasOpen = d.open; d.open = true;
+      layout();
+    });
+    window.addEventListener('afterprint', function () {
+      $('#methodDetails').open = false;
+      layout();
+    });
+
+    // 键盘左右切换年龄
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var tag = (e.target && e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+      if (state.pinned === null) return;
+      e.preventDefault();
+      var next = clamp(state.pinned + (e.key === 'ArrowRight' ? 1 : -1), 0, N - 1);
+      state.pinned = next; state.hover = next;
+      renderCard(); refreshSel(); showTip(next);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>

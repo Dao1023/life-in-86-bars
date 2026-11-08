@@ -1,0 +1,24 @@
+# 数据与文字许可（CC BY 4.0）
+
+本仓库中的**数据、文字与图形素材**采用
+[Creative Commons Attribution 4.0 International（CC BY 4.0）](https://creativecommons.org/licenses/by/4.0/)
+许可，适用范围包括：
+
+- `data/` —— 全部 CSV / JSON 数据文件（含 `data/archive/`）；
+- `research/` —— 调研笔记与文献整理；
+- `notes/` —— 模型说明、审计报告、重建日志；
+- `index.html`、`viz/lifecycle.html`、`viz/template.html` 的**页面文字、图表设计、图形与版面**——页面文案与图表是作品的一部分，同样适用 CC BY 4.0（其中的可执行脚本与构建代码仍按 MIT，见下）；
+- `viz/og-image.*` 分享卡，以及 `viz/*.png` 截图与 `viz/archive/` 旧图。
+
+你可以自由复制、分发、修改、商用上述内容，**但须署名**，并注明许可与是否作了修改：
+
+> 数据与文字来源：Dao1023，《一个上海人的一生，每年要花多少钱》，
+> https://github.com/Dao1023/life-in-86-bars ，许可 CC BY 4.0。
+
+署名时请保留到仓库的链接；若方便，也请链回站点
+https://dao1023.github.io/life-in-86-bars/ 。
+
+注意：`data/` 中的原始统计数字引自国家统计局、上海统计局、BLS 等公开出版物，
+其原始版权归各自发布机构；本许可只覆盖本仓库作者整理、建模与撰写的部分。
+
+**代码**（`*.py`、`tools/`、`viz/build*.py`、HTML 内联脚本等）不在本许可范围内，采用 MIT 许可，见 [LICENSE](LICENSE)。

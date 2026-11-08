@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>一个上海人的一生，每年要花多少钱 · 86 根柱</title>
+<meta name="description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于上海 2024 官方总额与多国年龄曲线的估算模型。">
+<meta name="author" content="dao1023">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="canonical" href="https://dao1023.github.io/life-in-86-bars/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="一个上海人的一生">
+<meta property="og:url" content="https://dao1023.github.io/life-in-86-bars/">
+<meta property="og:title" content="一个上海人的一生，每年要花多少钱">
+<meta property="og:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于上海 2024 官方总额与多国年龄曲线的估算模型。">
+<meta property="og:image" content="https://dao1023.github.io/life-in-86-bars/viz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="一张堆叠柱状图：上海人 0–85 岁每年消费，中间高两头低">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="一个上海人的一生，每年要花多少钱">
+<meta name="twitter:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。">
+<meta name="twitter:image" content="https://dao1023.github.io/life-in-86-bars/viz/og-image.png">
+<meta name="twitter:image:alt" content="86 根堆叠柱：中间高两头低，46 岁前后最高">
+
+<link rel="icon" href="viz/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="viz/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="viz/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset",
+ "name":"上海 2024 年分年龄消费结构（模型估算）",
+ "description":"0–85 岁逐年、八类消费的模型估算：以上海 2024 年城镇人均消费 54,980 元与八大类总额为锚，年龄形状取自 CHIPS 2007、育娲育儿成本、BLS CE、日本家计调查等文献，非官方分年龄观测。",
+ "url":"https://dao1023.github.io/life-in-86-bars/",
+ "creator":{"@type":"Person","name":"dao1023"},
+ "datePublished":"2026-11-08",
+ "license":"https://creativecommons.org/licenses/by/4.0/",
+ "isBasedOn":["https://dao1023.github.io/life-in-86-bars/data/shanghai_lifecycle.json"],
+ "variableMeasured":["食品烟酒","衣着","居住","生活用品及服务","交通通信","教育文化娱乐","医疗保健","其他用品和服务"],
+ "spatialCoverage":"上海","temporalCoverage":"2024"}
+</script>
+
+<style>
+:root{
+  --paper:#FAF8F4; --ink:#191817; --body:#33302B; --muted:#6E675C; --faint:#726B60;
+  --rule:#DCD5C7; --rule-2:#EDE7DA;
+  --serif:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","DengXian","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.85;font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1{font-family:var(--serif);font-weight:700;text-wrap:balance;margin:0}
+h2{font-family:var(--serif);font-weight:700;text-wrap:pretty;margin:0}
+a{color:inherit}
+.chain p a, .after p a, .more a{display:inline-block;padding:5px 0;border-bottom:1px solid var(--rule-2);text-decoration:none;color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:12px;background:var(--ink);color:var(--paper);padding:8px 14px;z-index:9}
+
+/* ---------- 首屏 ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,5.2vh,76px) clamp(22px,5.6vw,88px) clamp(20px,4vh,48px)}
+.kicker{font-size:13px;letter-spacing:.06em;color:var(--muted)}
+.hero h1{font-size:clamp(40px,6.4vw,88px);line-height:1.16;letter-spacing:.005em;margin:clamp(10px,1.6vh,20px) 0 0;text-wrap:nowrap}
+.assert{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.5vw,36px);line-height:1.5;margin:clamp(18px,3.4vh,40px) 0 0}
+.assert-sub{font-size:15px;color:var(--muted);margin:.55em 0 0;line-height:1.7}
+.nums{display:flex;align-items:flex-end;gap:clamp(20px,3.6vw,64px);margin-top:clamp(20px,3.6vh,44px);flex-wrap:wrap}
+.num{display:flex;flex-direction:column}
+.num b{font-family:var(--serif);font-weight:700;line-height:.94;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.num.big b{font-size:clamp(54px,6.6vw,96px)}
+.num.small b{font-size:clamp(34px,4.3vw,64px);color:#3D3833}
+.num span{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.cue{position:absolute;left:clamp(22px,5.6vw,88px);bottom:clamp(18px,3.6vh,40px);display:flex;align-items:center;gap:12px;font-size:12px;color:var(--faint);letter-spacing:.06em}
+.cue i{display:block;width:1px;height:54px;background:linear-gradient(var(--ink),rgba(25,24,23,0))}
+@media (prefers-reduced-motion:no-preference){.cue i{animation:cue 2.4s ease-in-out infinite}}
+@keyframes cue{0%,100%{opacity:.35;transform:scaleY(.72);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+
+/* ---------- 滚动叙事 ---------- */
+.story{border-top:1px solid var(--rule-2)}
+.story-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(48px,5.2vw,80px);padding:0 clamp(22px,5.6vw,88px);align-items:start}
+.steps{padding:6vh 0 12vh}
+.step{min-height:84vh;display:flex;flex-direction:column;justify-content:flex-start;max-width:100%;padding-top:calc(6vh + 8px)}
+.step .no{font-size:12px;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+.step h2{font-size:clamp(22px,2.1vw,30px);line-height:1.46;margin:.42em 0 0;letter-spacing:.005em}
+.step p{margin:.75em 0 0;color:var(--body);font-size:17px;line-height:1.88}
+.step .src{font-size:12.5px;color:var(--faint);margin-top:1.1em;line-height:1.7}
+.step .model{font-size:12.5px;color:var(--muted);border-left:2px solid var(--rule);padding-left:10px;margin-top:.9em}
+
+.figwrap{position:relative;height:100%}
+.fig{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:flex-start;padding-top:6vh}
+.chart{width:100%;height:auto;min-height:420px;display:block;overflow:visible}
+.figcap{display:none;font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:8px}
+.legend{display:grid;grid-template-columns:repeat(4,auto);gap:5px 14px;justify-content:start;margin:10px 0 0 0;padding:0;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+
+/* ---------- 收尾 ---------- */
+.after{border-top:1px solid var(--rule-2);padding:clamp(48px,8vh,96px) clamp(22px,5.6vw,88px) 0}
+.after .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);max-width:1180px}
+.after h2{font-size:clamp(19px,1.6vw,22px);line-height:1.5}
+.after .two p{margin:.7em 0 0;color:var(--body);font-size:16px;line-height:1.9;max-width:33em}
+.after .two .q{color:var(--ink)}
+.audit{margin-top:clamp(36px,6vh,64px);max-width:1180px}
+.audit ol{margin:1em 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 28px}
+.audit li{font-size:14.5px;line-height:1.75;color:var(--body);border-top:1px solid var(--rule-2);padding-top:10px}
+.audit li b{font-weight:600;color:var(--ink);margin-right:.4em}
+.audit a{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule)}
+.actions{margin-top:clamp(36px,6vh,64px);display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:13px 22px;font-size:15px;line-height:1.2}
+.btn:hover{background:#000}
+.actions .minor{font-size:13.5px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule)}
+footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);padding:18px 0 40px;font-size:12.5px;color:var(--faint);line-height:1.7}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width:1100px){
+  .hero{min-height:auto;justify-content:flex-start;padding-bottom:40px}
+  .cue{position:static;margin-top:36px}
+  .story-grid{display:block;padding:0 20px}
+  /* 窄屏：图仍然 sticky，但高度收到内容高度（约 300px），不再被裁；
+     文字在上半屏以下滚动，括号/淡化随 step 切换——比「图滚走、只剩文字」更有用。 */
+  /* 窄屏：图改为静态（随文字一起滚走）。sticky 在这个宽度下会把标题压在面板底下，
+     而图内文字缩到 4–5px 也读不出来——不如让六段文字独立成篇。 */
+  .figwrap{position:static;height:auto;overflow:visible;background:var(--paper);padding:6px 0 0}
+  .fig{height:auto;padding-top:0;justify-content:flex-start}
+  .fig .chart{height:auto;width:100%;min-height:0}
+  .legend{margin-top:6px;grid-template-columns:repeat(4,auto)}
+  .steps{padding:0 0 8vh}
+  .step{min-height:auto;padding:52px 0 10px;max-width:none}
+  .after .two{grid-template-columns:1fr}
+}
+@media (max-width:740px){
+  body{font-size:16px}
+  .hero h1{font-size:clamp(30px,8.6vw,40px)}
+  .nums{gap:18px}
+  .legend{font-size:11px;gap:3px 10px}
+  .step p{font-size:16px}
+}
+@media print{
+  .hero{min-height:auto}
+  .fig{position:static;height:auto}
+  .cue{display:none}
+  .step{min-height:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#story">跳到正文</a>
+
+<header class="hero">
+  <p class="kicker">上海 · 2024 年价 · 元/人/年 · 模型估算</p>
+  <h1>一个上海人的一生，<br>每年要花多少钱</h1>
+  <p class="assert">最贵的那一段，不在养孩子</p>
+  <p class="assert-sub">四十几岁的支出，比 0–17 岁高出五成。</p>
+  <div class="nums">
+    <p class="num big"><b>__PEAK__</b><span>__PEAK_AGE__ 岁前后 · 一年的人均消费（元/人/年）</span></p>
+    <p class="num small"><b>__TROUGH__</b><span>__TROUGH_AGE__ 岁 · 全生最省（元/人/年）</span></p>
+  </div>
+  <p class="cue"><i aria-hidden="true"></i>往下滚，六个转折</p>
+</header>
+
+<main id="story">
+<section class="story">
+  <div class="story-grid">
+    <div class="figwrap">
+      <figure class="fig" style="margin:0">
+        <svg class="chart" id="chart" viewBox="0 0 820 620" role="img"
+             aria-label="上海 0 到 85 岁每年消费的堆叠柱状图：0 岁最低 __TROUGH__ 元，四十几岁最高 __PEAK__ 元，85 岁及以上医疗占比回升。">
+        </svg>
+        <figcaption class="figcap" id="figcap">86 根柱子，一年一根 · 八类消费堆叠 · 元／人／年</figcaption>
+        <div class="legend" id="legend"></div>
+      </figure>
+    </div>
+
+    <div class="steps" id="steps">
+      <section class="step" data-step="0">
+        <p class="no">01 ／ 出生</p>
+        <h2>0 岁：一辈子最省的一年</h2>
+        <p>这是全图最低点。托育还没开始，钱只花在吃、穿、用和一点点医疗上——医疗 __H0__ 元，占当年 __H0SH__%。</p>
+        <p class="src">谷值 31,540 元 · 峰谷比 __RATIO__×</p>
+      </section>
+
+      <section class="step" data-step="1">
+        <p class="no">02 ／ 父母在付</p>
+        <h2>0–17 岁：这 18 年的钱不是你花的</h2>
+        <p>曲线从 __W0__ 万爬到 __W17__ 万。图上这一段的斜纹标的是「家庭代付」——住户调查里孩子没有独立账本，掏钱的是父母。</p>
+        <p class="src">0 岁 __TROUGH__ 元 → 17 岁 __T017__ 元 · 这一段是家庭支出，不是个人支出</p>
+      </section>
+
+      <section class="step" data-step="2">
+        <p class="no">03 ／ 换人付</p>
+        <h2>18 岁：不是消费降了，是掏钱的人换了</h2>
+        <p>__D18__%，全表里少见的一段下坡。变的是口径：从父母的账本换到自己的账本——学费、住宿、生活费。</p>
+        <p class="src">17 岁 __T017__ 元 → 18 岁 __T018__ 元（__D18__%）· 同一份支出，换了个付款人</p>
+      </section>
+
+      <section class="step" data-step="3">
+        <p class="no">04 ／ 毕业</p>
+        <h2>23 岁：四成的钱交给了房东</h2>
+        <p>居住 __H23__ 元，占当年 __H23SH__%。22→23 岁 +14.0% 也是全表最陡的一段上坡——一半是毕业后的真实变化，一半是「住校 → 租房」。</p>
+        <p class="src">23 岁合计 __T023__ 元 · 居住 __H23__ 元</p>
+      </section>
+
+      <section class="step" data-step="4">
+        <p class="no">05 ／ 峰值</p>
+        <h2>46 岁前后：模型里最贵的一段</h2>
+        <p>__PEAK__ 元／人／年。不在养娃那几年——0–17 岁的平均是 __MEAN017__ 元，四十几岁比它高出 __UP017__%。</p>
+        <p class="model">模型值：这是年龄梯度的最大值所在，不是某一年的观测。</p>
+      </section>
+
+      <section class="step" data-step="5">
+        <p class="no">06 ／ 退休与之后</p>
+        <h2>退休不是断崖，是一段五年的坡</h2>
+        <p>59→64 岁五年 __D59_64__%，其中 59→60 只掉 __D59_60__%。再往后医疗抬头：85 岁及以上，医疗 __H85__ 元，占 __H85SH__%。</p>
+        <p class="src">五年坡来自 ρ 参数；85 岁那一档含居家照护 __LTC__ 元</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="after">
+  <div class="two">
+    <div>
+      <h2>这张图能说什么</h2>
+      <p class="q">「上海家庭一生支出的量级与形状——0–17 年从 3.1 万升到 4.7 万，成年平台 5.5–6.4 万，23 岁租房、退休后医疗抬头是真实台阶。」</p>
+    </div>
+    <div>
+      <h2>不能说什么</h2>
+      <p class="q">「46 岁最贵（那是参数产物）、任何单年数字、85 岁医疗的精确值。」</p>
+    </div>
+  </div>
+
+  <div class="audit">
+    <h2>五轮独立审计，最值得看的其实是这一部分</h2>
+    <ol>
+      <li><b>A 盲测</b>未看数据，先写 12 阶段 × 八大类先验。</li>
+      <li><b>B 对照</b>5 条 P0：0–2 结构是假的、30–49 被家庭分母摊薄、18 岁 −25% 全是口径切换、「4 岁最贵」是 12,000 元幼儿园假设的产物、60 岁没有退休崖。</li>
+      <li><b>C 复核</b>判「有条件可信」，抓到脚本只查降幅、漏了 22→23 那次上坡。</li>
+      <li><b>D 收口</b>补查涨幅，2→3 岁与 22→23 岁两处跳变都被逐条盯住。</li>
+      <li><b>E 复检</b>「部分修好」：2→3 的高度由「2 岁入托率 11%」一个参数决定，glide 归一后是全表平移。</li>
+    </ol>
+    <p><a href="https://github.com/Dao1023/life-in-86-bars/blob/main/README.md#四审计链">看完整审计链 →</a></p>
+  </div>
+
+  <div class="actions">
+    <a class="btn" href="viz/lifecycle.html">打开完整图表（人均/每户切换、情景、敏感性、表格）</a>
+    <a class="minor" href="data/shanghai_lifecycle.json">下载数据 JSON</a>
+    <a class="minor" href="data/shanghai_lifecycle.csv">CSV</a>
+    <a class="minor" href="https://github.com/Dao1023/life-in-86-bars">GitHub 源码</a>
+  </div>
+
+  <footer>
+    上海 2024 城镇人均消费 54,980｜模型估算，非统计发布物｜数据与代码 MIT / CC BY
+  </footer>
+</section>
+</main>
+
+<noscript><p style="padding:24px 8vw">这张图的形状需要 JavaScript 绘制。也可以直接打开 <a href="viz/lifecycle.html">完整图表</a>。</p></noscript>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var CATS = D.categories, AGES = D.ages, TOT = D.total, ABS = D.absolute;
+  var N = AGES.length;
+  var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("chart");
+  var W = 820, H = 620, ML = 46, MR = 12, MT = 72, MB = 64;
+  var PW = W - ML - MR, PH = H - MT - MB;
+  var YMAX = 74000;
+  var STEP = PW / N, BW = Math.max(2.6, STEP - 1.9);  /* 缝隙留 1.9：crispEdges 下 1.35 会让个别列吸到 0 缝隙、看起来像一条深线 */
+
+  function y(v) { return MT + PH - (v / YMAX) * PH; }
+  function cx(i) { return ML + i * STEP + STEP / 2; }
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  /* 网格与坐标 */
+  var gGrid = el("g", { "aria-hidden": "true" }, svg);
+  [0, 20000, 40000, 60000].forEach(function (v) {
+    var yy = y(v);
+    el("line", { x1: ML, y1: yy, x2: ML + PW, y2: yy, stroke: v === 0 ? "#C9C1B2" : "#EDE8E0", "stroke-width": 1 }, gGrid);
+    el("text", { x: ML - 8, y: yy + 4, "text-anchor": "end", "font-size": 11, fill: "#8A8378" }, gGrid).textContent = v === 0 ? "0" : (v / 10000) + "万";
+  });
+  AGES.forEach(function (a, i) {
+    if (a % 10) return;
+    el("text", { x: cx(i), y: MT + PH + 19, "text-anchor": "middle", "font-size": 11, fill: "#8A8378" }, gGrid).textContent = a;
+  });
+  el("text", { x: ML + PW, y: MT + PH + 19, "text-anchor": "end", "font-size": 11, fill: "#B3ABA0" }, gGrid).textContent = "岁";
+  el("text", { x: ML - 2, y: 20, "font-size": 12.5, fill: "#726B60", "letter-spacing": .04 }, gGrid)
+    .textContent = "元／人／年 · 上海 2024 年价 · 模型估算";
+
+  /* 斜纹：0–17 家庭代付 */
+  var defs = el("defs", {}, svg);
+  var pat = el("pattern", { id: "hatch", width: 4, height: 4, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+  el("rect", { width: 4, height: 4, fill: "#FAF8F4", "fill-opacity": 0 }, pat);
+  el("line", { x1: 0, y1: 0, x2: 0, y2: 4, stroke: "#FAF8F4", "stroke-width": 1.1, "stroke-opacity": .5 }, pat);
+
+  var gBand = el("g", { "aria-hidden": "true" }, svg);
+  var gBars = el("g", {}, svg);
+  var gHatch = el("g", { "aria-hidden": "true" }, svg);
+  var gMark = el("g", { "aria-hidden": "true" }, svg);
+  var gCall = el("g", { "aria-hidden": "true" }, svg);
+
+  var rects = [], hatches = [];
+  for (var i = 0; i < N; i++) {
+    var yb = MT + PH, row = [];
+    for (var c = 0; c < CATS.length; c++) {
+      var v = ABS[CATS[c].id][i];
+      if (v <= 0) { row.push(null); continue; }
+      var h = (v / YMAX) * PH;
+      yb -= h;
+      row.push(el("rect", {
+        x: ML + i * STEP + (STEP - BW) / 2, y: yb, width: BW, height: h,
+        fill: CATS[c].color
+      }, gBars));
+    }
+    rects.push(row);
+    if (AGES[i] <= 17) {
+      hatches.push(el("rect", {
+        x: ML + i * STEP + (STEP - BW) / 2, y: y(TOT[i]),
+        width: BW, height: (TOT[i] / YMAX) * PH, fill: "url(#hatch)", "pointer-events": "none"
+      }, gHatch));
+    }
+  }
+
+  /* 图例 */
+  var lg = document.getElementById("legend");
+  CATS.forEach(function (c) {
+    var s = document.createElement("span");
+    s.innerHTML = '<i style="background:' + c.color + '"></i>' + c.label;
+    lg.appendChild(s);
+  });
+
+  /* ---------- 步骤：区间带 + 括注 ---------- */
+  function clearBand() { while (gBand.firstChild) gBand.removeChild(gBand.firstChild); }
+
+  /* 标法：只在 x 轴下方画一条括号（水平细线 + 两端上翘 5px），标签在括号下方 6px。
+     图内不加任何矩形/引线——焦点完全交给「带外 0.32」的淡化。 */
+  var markRight = -1e9, markRow = 0;
+  function mark(r0, r1, label) {
+    var i0 = AGES.indexOf(r0), i1 = AGES.indexOf(r1);
+    var x0 = cx(i0) - STEP / 2, x1 = cx(i1) + STEP / 2;
+    var by = MT + PH + 40, arm = 5;
+    el("path", { d: "M" + x0.toFixed(1) + "," + (by - arm) + " V" + by + " H" + x1.toFixed(1) + " V" + (by - arm),
+      fill: "none", stroke: "#8A8175", "stroke-width": 1 }, gCall);
+    if (PW < 520) return;   /* 窄屏不出标签：整张图缩到 350px 时图内文字只有 4–5px，改由下方 HTML 说明行承担 */
+    var fs = 12;
+    var tw = 0;
+    for (var q = 0; q < label.length; q++) tw += /[一-龥]/.test(label[q]) ? fs : fs * .56;
+    var mid = (x0 + x1) / 2;
+    var tx = Math.max(ML + tw / 2 - 6, Math.min(ML + PW - tw / 2 + 6, mid));
+    if (tx - tw / 2 < markRight + 10) markRow ^= 1;
+    markRight = tx + tw / 2;
+    var t = el("text", { x: tx.toFixed(1), y: by + 6 + fs * .82 + markRow * 17, "text-anchor": "middle",
+      "font-size": fs, fill: "#6E675C" }, gCall);
+    t.textContent = label;
+  }
+
+  var STEPS = [
+    { band: [0, 2], key: [0],
+      marks: [[0, 2, "__TROUGH__ 元", "0 岁 · 全生最低"]],
+      cap: "高亮：0–2 岁；出生那年是全生最低" },
+    { band: [0, 17], key: null, hatch: 1,
+      marks: [[0, 17, "3.1 万 → 4.7 万", "0–17 岁 · 家庭代付"]],
+      cap: "高亮：0–17 岁；斜纹表示家庭代付，不是孩子自己花的钱" },
+    { band: [14, 22], key: [17, 18],
+      marks: [[14, 22, "__D18__%", "17→18 岁 · 换人付"]],
+      cap: "高亮：14–22 岁，其中 17→18 岁是台阶" },
+    { band: [21, 25], key: [23], strong: "housing",
+      marks: [[22, 23, "__H23SH__%", "23 岁 · 居住 __H23__ 元"]],
+      cap: "高亮：21–25 岁，23 岁居住占比最高" },
+    { band: [40, 52], key: [46], dot: 46,
+      marks: [[40, 52, "__PEAK__ 元", "46 岁前后 · 模型值"]],
+      cap: "高亮：40–52 岁，46 岁是最高点（模型值）" },
+    { band: [58, 85], key: [59, 64, 85],
+      marks: [[59, 64, "__D59_64__%", "59→64 岁 · 五年坡"], [83, 85, "__H85SH__%", "85 岁及以上 · 医疗"]],
+      cap: "高亮：58–85 岁；59→64 一段缓坡，85 岁医疗抬头" }
+  ];
+
+  var figcap = document.getElementById("figcap");
+  var CAP0 = figcap.textContent;
+  var active = -1;
+
+  function apply(k) {
+    active = k;
+    var st = k >= 0 ? STEPS[k] : null;
+    clearBand();
+    while (gCall.firstChild) gCall.removeChild(gCall.firstChild);
+
+    for (var i = 0; i < N; i++) {
+      var inBand = st ? (i >= st.band[0] && i <= st.band[1]) : true;
+      var isKey = st ? (!st.key || st.key.indexOf(AGES[i]) >= 0) : true;
+      for (var c = 0; c < CATS.length; c++) {
+        var r = rects[i][c];
+        if (!r) continue;
+        var o = 1;
+        if (st) {
+          if (isKey && st.strong) o = CATS[c].id === st.strong ? 1 : .45;
+          else if (isKey) o = 1;
+          else if (inBand) o = .92;
+          else o = .32;
+        }
+        r.setAttribute("opacity", o);
+      }
+      if (hatches[i]) hatches[i].setAttribute("opacity", st && st.hatch ? .95 : (st ? 0 : .45));
+    }
+
+    if (st) {
+      markRight = -1e9; markRow = 0;
+      st.marks.forEach(function (mk) {
+        mark(mk[0], mk[1], mk[3] + " · " + mk[2]);
+      });
+      figcap.textContent = st.marks[0][3] + " · " + st.marks[0][2];
+    } else { figcap.textContent = ""; }
+    var list = document.querySelectorAll(".step");
+    for (var s2 = 0; s2 < list.length; s2++) list[s2].classList.toggle("on", s2 === k);
+  }
+
+  /* 缺口监测：以视口中线为触发线 */
+  var steps = [].slice.call(document.querySelectorAll(".step"));
+
+  /* 几何兜底：IntersectionObserver 在后台标签页 / 被遮挡的窗口里可能完全收不到回调，
+     所以再用 scroll 位置算一次「哪一块正压在视口中线上」。两边都调用 apply()，幂等。 */
+  var ticking = false, suppress = false;
+  /* 窄屏（<=1100px）：图是静态的、会随文字滚走，读者看不到「这一段」和文字同屏，
+     而整张 820 宽的图缩到 350px 时图内文字只剩 4–5px。所以窄屏不做逐段标注，只给总览。 */
+  var NARROW = window.matchMedia("(max-width:1100px)");
+  function pick() {
+    ticking = false;
+    if (suppress) return;
+    if (NARROW.matches) { if (active !== -1) apply(-1); return; }
+    var mid = window.innerHeight * 0.5, best = -1, bestD = 1e9;
+    for (var s = 0; s < steps.length; s++) {
+      var r = steps[s].getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) continue;
+      var d = Math.abs((r.top + r.bottom) / 2 - mid);
+      if (r.top <= mid && r.bottom >= mid) { best = s; break; }
+      if (d < bestD) { bestD = d; best = s; }
+    }
+    if (best >= 0 && best !== active) apply(best);
+  }
+  function onScroll() {
+    suppress = false;
+    if (ticking) return;
+    ticking = true;
+    setTimeout(pick, 60);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  setInterval(pick, 350);   /* 兜底：程序化滚动、锚点跳转、scroll 事件被吞时也能对上 */
+  window.addEventListener("load", pick);
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      /* 只当触发器用：回调顺序不保证，真正判定交给几何的 pick() */
+      if (!suppress) pick();
+    }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+    steps.forEach(function (s) { io.observe(s); });
+  }
+  /* Esc 之后：只要读者再有任何滚动意图，就把高亮接回来。
+     不能只依赖 scroll 事件——某些宿主（后台标签页、iframe、程序化滚动）不发。 */
+  function resume() { suppress = false; }
+  ["wheel", "touchstart", "pointerdown"].forEach(function (t) {
+    window.addEventListener(t, resume, { passive: true });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { suppress = true; apply(-1); }
+    else resume();
+  });
+
+  apply(-1);
+  pick();
+})();
+</script>
+</body>
+</html>

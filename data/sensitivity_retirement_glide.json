@@ -1,0 +1,66 @@
+{
+ "title": "退休 glide 端点敏感性（ρ_end）",
+ "note": "glide 端点 ρ_end 是估计值不是观测值：0.85/0.90/0.95 三档分别对应退休后消费降 15%/10%/5%。三档都各自归一化到 54,980 且八类锁官方，所以差异只出现在 59 岁之后的形状上。 base 档（0.90）85 岁 43,259.2 元。",
+ "variants": {
+  "end_0.85": {
+   "retire_end_value": 0.85,
+   "rho_60_64_85": [
+    0.955,
+    0.85,
+    0.85
+   ],
+   "drop_59_60_pct": -4.96,
+   "cum_59_64_pct": -17.25,
+   "mean_60_69": 47776.9,
+   "mean_30_39": 63583.4,
+   "total_85": 41411.9,
+   "peak_age": 46,
+   "peak_value": 65291.1,
+   "trough_age": 0,
+   "trough_value": 31540.3,
+   "peak_to_trough": 2.07,
+   "ratio_60_69_over_50_59": 0.803,
+   "weighted_mean": 54980.0
+  },
+  "end_0.90": {
+   "retire_end_value": 0.9,
+   "rho_60_64_85": [
+    0.97,
+    0.9,
+    0.9
+   ],
+   "drop_59_60_pct": -3.47,
+   "cum_59_64_pct": -12.39,
+   "mean_60_69": 49421.7,
+   "mean_30_39": 62729.7,
+   "total_85": 43259.2,
+   "peak_age": 46,
+   "peak_value": 64414.5,
+   "trough_age": 0,
+   "trough_value": 31540.3,
+   "peak_to_trough": 2.04,
+   "ratio_60_69_over_50_59": 0.842,
+   "weighted_mean": 54980.0
+  },
+  "end_0.95": {
+   "retire_end_value": 0.95,
+   "rho_60_64_85": [
+    0.985,
+    0.95,
+    0.95
+   ],
+   "drop_59_60_pct": -1.98,
+   "cum_59_64_pct": -7.52,
+   "mean_60_69": 51023.0,
+   "mean_30_39": 61898.7,
+   "total_85": 45057.6,
+   "peak_age": 46,
+   "peak_value": 63561.1,
+   "trough_age": 0,
+   "trough_value": 31540.3,
+   "peak_to_trough": 2.02,
+   "ratio_60_69_over_50_59": 0.881,
+   "weighted_mean": 54980.0
+  }
+ }
+}

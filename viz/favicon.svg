@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" role="img" aria-label="三根高低不同的消费堆叠柱">
+<rect width="16" height="16" rx="2.4" fill="#FAF8F4"/>
+<rect x="1.60" y="8.00" width="3.41" height="3.71" fill="#C4553B"/>
+<rect x="1.60" y="11.71" width="3.41" height="2.69" fill="#D8826C"/>
+<rect x="6.29" y="3.39" width="3.41" height="6.38" fill="#2F5D62"/>
+<rect x="6.29" y="9.78" width="3.41" height="4.62" fill="#6F9498"/>
+<rect x="10.99" y="10.05" width="3.41" height="2.52" fill="#4A6FA5"/>
+<rect x="10.99" y="12.57" width="3.41" height="1.83" fill="#8CA6C6"/>
+</svg>

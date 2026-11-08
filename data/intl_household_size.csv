@@ -1,0 +1,42 @@
+﻿country,year,age_band,hh_size_people,note
+US,2023,all,2.5,people per consumer unit (Table 1300)
+US,2023,<25,2.0,people per consumer unit (Table 1300)
+US,2023,25-34,2.6,people per consumer unit (Table 1300)
+US,2023,35-44,3.4,people per consumer unit (Table 1300)
+US,2023,45-54,2.9,people per consumer unit (Table 1300)
+US,2023,55-64,2.2,people per consumer unit (Table 1300)
+US,2023,65+,1.7,people per consumer unit (Table 1300)
+US,2023,65-74,1.9,people per consumer unit (Table 1300)
+US,2023,75+,1.6,people per consumer unit (Table 1300)
+US,2024,all,2.4,people per consumer unit (Table 1300)
+US,2024,<25,1.9,people per consumer unit (Table 1300)
+US,2024,25-34,2.6,people per consumer unit (Table 1300)
+US,2024,35-44,3.3,people per consumer unit (Table 1300)
+US,2024,45-54,3.0,people per consumer unit (Table 1300)
+US,2024,55-64,2.2,people per consumer unit (Table 1300)
+US,2024,65+,1.8,people per consumer unit (Table 1300)
+US,2024,65-74,1.9,people per consumer unit (Table 1300)
+US,2024,75+,1.6,people per consumer unit (Table 1300)
+US,2025,all,2.4,people per consumer unit (Table 1300)
+US,2025,<25,2.0,people per consumer unit (Table 1300)
+US,2025,25-34,2.6,people per consumer unit (Table 1300)
+US,2025,35-44,3.3,people per consumer unit (Table 1300)
+US,2025,45-54,3.0,people per consumer unit (Table 1300)
+US,2025,55-64,2.3,people per consumer unit (Table 1300)
+US,2025,65+,1.7,people per consumer unit (Table 1300)
+US,2025,65-74,1.8,people per consumer unit (Table 1300)
+US,2025,75+,1.6,people per consumer unit (Table 1300)
+JP,2024,all,2.88,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,~29,2.97,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,30-39,3.63,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,40-49,3.68,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,50-59,3.09,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,60-69,2.58,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,70+,2.33,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+JP,2024,65+,2.36,"平均世帯人員, two-or-more-person households (第3表 世帯人員)"
+UK,FYE2018,<30,2.4,weighted average persons per household (Table A9)
+UK,FYE2018,30-49,3.1,weighted average persons per household (Table A9)
+UK,FYE2018,50-64,2.3,weighted average persons per household (Table A9)
+UK,FYE2018,65-74,1.8,weighted average persons per household (Table A9)
+UK,FYE2018,75+,1.5,weighted average persons per household (Table A9)
+UK,FYE2018,all,2.4,weighted average persons per household (Table A9)

@@ -1,0 +1,10 @@
+{
+ "year": 2023,
+ "n_cu": 18871,
+ "age_min": 16,
+ "age_max": 87,
+ "median_n_per_age": 300.0,
+ "interpolated": false,
+ "weights": "FINLWT21 (calibration final weight)",
+ "replicate_weights": "WTREP01-WTREP44"
+}
