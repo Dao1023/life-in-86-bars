@@ -159,7 +159,7 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
     <p class="num big"><b>__PEAK__</b><span>__PEAK_AGE__ 岁前后 · 一年的人均消费（元/人/年）</span></p>
     <p class="num small"><b>__TROUGH__</b><span>__TROUGH_AGE__ 岁 · 全生最省（元/人/年）</span></p>
   </div>
-  <p class="cue"><i aria-hidden="true"></i>往下滚，六个转折</p>
+  <p class="cue"><i aria-hidden="true"></i>往下滚，九个转折</p>
 </header>
 
 <main id="story">
@@ -178,44 +178,65 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
     <div class="steps" id="steps">
       <section class="step" data-step="0">
         <p class="no">01 ／ 出生</p>
-        <h2>0 岁：一辈子最省的一年</h2>
+        <h2>出生那年，<br>是一生最省的一年</h2>
         <p>这是全图最低点。托育还没开始，钱只花在吃、穿、用和一点点医疗上——医疗 __H0__ 元，占当年 __H0SH__%。</p>
         <p class="src">谷值 31,540 元 · 峰谷比 __RATIO__×</p>
       </section>
 
       <section class="step" data-step="1">
         <p class="no">02 ／ 父母在付</p>
-        <h2>0–17 岁：这 18 年的钱不是你花的</h2>
-        <p>曲线从 __W0__ 万爬到 __W17__ 万。图上这一段的斜纹标的是「家庭代付」——住户调查里孩子没有独立账本，掏钱的是父母。</p>
-        <p class="src">0 岁 __TROUGH__ 元 → 17 岁 __T017__ 元 · 这一段是家庭支出，不是个人支出</p>
+        <h2>这 18 年的钱，<br>不是你花的</h2>
+        <p>曲线从 __W0__ 万爬到 __W17__ 万。下面那条括注标的是「家庭代付」——住户调查里孩子没有独立账本，掏钱的是父母。</p>
+        <p class="src">0 岁 __TROUGH__ 元 → 17 岁 __T017__ 元 · 这一段是家庭支出</p>
       </section>
 
       <section class="step" data-step="2">
         <p class="no">03 ／ 换人付</p>
-        <h2>18 岁：不是消费降了，是掏钱的人换了</h2>
+        <h2>18 岁：不是消费降了，<br>是掏钱的人换了</h2>
         <p>__D18__%，全表里少见的一段下坡。变的是口径：从父母的账本换到自己的账本——学费、住宿、生活费。</p>
         <p class="src">17 岁 __T017__ 元 → 18 岁 __T018__ 元（__D18__%）· 同一份支出，换了个付款人</p>
       </section>
 
       <section class="step" data-step="3">
         <p class="no">04 ／ 毕业</p>
-        <h2>23 岁：四成的钱交给了房东</h2>
-        <p>居住 __H23__ 元，占当年 __H23SH__%。22→23 岁 +14.0% 也是全表最陡的一段上坡——一半是毕业后的真实变化，一半是「住校 → 租房」。</p>
+        <h2>毕业头一年，<br>四成的钱交给了房东</h2>
+        <p>居住 __H23__ 元，占当年 __H23SH__%。22→23 岁 +14.0% 也是全表最陡的一段上坡——这段上坡里，有一部分是「住校 → 租房」的口径切换。</p>
         <p class="src">23 岁合计 __T023__ 元 · 居住 __H23__ 元</p>
       </section>
 
       <section class="step" data-step="4">
-        <p class="no">05 ／ 峰值</p>
-        <h2>46 岁前后：模型里最贵的一段</h2>
+        <p class="no">05 ／ 三十岁</p>
+        <h2>三十岁以后，<br>钱开始为房子和孩子花</h2>
+        <p>30 岁居住 __H30__ 元（__H30SH__%），到 39 岁仍是 __H39__ 元（__H39SH__%）——房贷和租金不跟着收入调整。同一段，教育从 __E30__ 涨到 __E39__ 元（__DE3039__%）。</p>
+        <p class="src">30 岁合计 __T30__ 元 → 39 岁 __T39__ 元（__D3039__%）</p>
+      </section>
+
+      <section class="step" data-step="5">
+        <p class="no">06 ／ 峰值</p>
+        <h2>四十几岁：<br>一辈子最贵的一段</h2>
         <p>__PEAK__ 元／人／年。不在养娃那几年——0–17 岁的平均是 __MEAN017__ 元，四十几岁比它高出 __UP017__%。</p>
         <p class="model">模型值：这是年龄梯度的最大值所在，不是某一年的观测。</p>
       </section>
 
-      <section class="step" data-step="5">
-        <p class="no">06 ／ 退休与之后</p>
-        <h2>退休不是断崖，是一段五年的坡</h2>
-        <p>59→64 岁五年 __D59_64__%，其中 59→60 只掉 __D59_60__%。再往后医疗抬头：85 岁及以上，医疗 __H85__ 元，占 __H85SH__%。</p>
-        <p class="src">五年坡来自 ρ 参数；85 岁那一档含居家照护 __LTC__ 元</p>
+      <section class="step" data-step="6">
+        <p class="no">07 ／ 空巢</p>
+        <h2>五十几岁：孩子走了，<br>支出只降了一成</h2>
+        <p>50→59 岁总额从 __T50__ 元降到 __T59__ 元（__D5059__%）；居住只从 __H50SH__% 降到 __H59SH__%——房子还在住，贷款也不会跟着孩子搬走。</p>
+        <p class="src">59 岁合计 __T59__ 元 · 居住 __H59__ 元</p>
+      </section>
+
+      <section class="step" data-step="7">
+        <p class="no">08 ／ 退休</p>
+        <h2>退休不是断崖，<br>是一段五年的坡</h2>
+        <p>59→64 岁五年 __D59_64__%，其中 59→60 只掉 __D59_60__%。没有哪一年突然少花一笔，是逐年往下走。</p>
+        <p class="src">59 岁 __T59__ 元 → 64 岁 __T64__ 元</p>
+      </section>
+
+      <section class="step" data-step="8">
+        <p class="no">09 ／ 老年</p>
+        <h2>最后十五年，<br>三成半的钱花在医疗上</h2>
+        <p>85 岁及以上，医疗 __H85__ 元，占 __H85SH__%；总额回落到 __T85__ 元，比峰值低 __DOWN85__%。</p>
+        <p class="src">85 岁那一档含居家照护 __LTC__ 元</p>
       </section>
     </div>
   </div>
@@ -300,19 +321,12 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
   el("text", { x: ML - 2, y: 20, "font-size": 12.5, fill: "#726B60", "letter-spacing": .04 }, gGrid)
     .textContent = "元／人／年 · 以上海为例 · 2024 年价";
 
-  /* 斜纹：0–17 家庭代付 */
-  var defs = el("defs", {}, svg);
-  var pat = el("pattern", { id: "hatch", width: 4, height: 4, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
-  el("rect", { width: 4, height: 4, fill: "#FAF8F4", "fill-opacity": 0 }, pat);
-  el("line", { x1: 0, y1: 0, x2: 0, y2: 4, stroke: "#FAF8F4", "stroke-width": 1.1, "stroke-opacity": .5 }, pat);
-
   var gBand = el("g", { "aria-hidden": "true" }, svg);
   var gBars = el("g", {}, svg);
-  var gHatch = el("g", { "aria-hidden": "true" }, svg);
   var gMark = el("g", { "aria-hidden": "true" }, svg);
   var gCall = el("g", { "aria-hidden": "true" }, svg);
 
-  var rects = [], hatches = [];
+  var rects = [];
   for (var i = 0; i < N; i++) {
     var yb = MT + PH, row = [];
     for (var c = 0; c < CATS.length; c++) {
@@ -326,12 +340,6 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
       }, gBars));
     }
     rects.push(row);
-    if (AGES[i] <= 17) {
-      hatches.push(el("rect", {
-        x: ML + i * STEP + (STEP - BW) / 2, y: y(TOT[i]),
-        width: BW, height: (TOT[i] / YMAX) * PH, fill: "url(#hatch)", "pointer-events": "none"
-      }, gHatch));
-    }
   }
 
   /* 图例 */
@@ -368,24 +376,33 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
   }
 
   var STEPS = [
-    { band: [0, 2], key: [0],
+    { band: [0, 2], key: [0, 1, 2],
       marks: [[0, 2, "__TROUGH__ 元", "0 岁 · 全生最低"]],
-      cap: "高亮：0–2 岁；出生那年是全生最低" },
-    { band: [0, 17], key: null, hatch: 1,
-      marks: [[0, 17, "3.1 万 → 4.7 万", "0–17 岁 · 家庭代付"]],
-      cap: "高亮：0–17 岁；斜纹表示家庭代付，不是孩子自己花的钱" },
+      cap: "0–2 岁：出生那年是全生最低" },
+    { band: [0, 17], key: null,
+      marks: [[0, 17, "__W0__ 万 → __W17__ 万", "0–17 岁 · 家庭代付"]],
+      cap: "0–17 岁：这一段是父母花的钱，不是孩子自己的消费" },
     { band: [14, 22], key: [17, 18],
       marks: [[14, 22, "__D18__%", "17→18 岁 · 换人付"]],
-      cap: "高亮：14–22 岁，其中 17→18 岁是台阶" },
-    { band: [21, 25], key: [23], strong: "housing",
-      marks: [[22, 23, "__H23SH__%", "23 岁 · 居住 __H23__ 元"]],
-      cap: "高亮：21–25 岁，23 岁居住占比最高" },
+      cap: "14–22 岁：17→18 岁是台阶" },
+    { band: [21, 29], key: [23], strong: "housing",
+      marks: [[21, 29, "居住 __H23SH__%", "23 岁 · 毕业租房"]],
+      cap: "21–29 岁：毕业头一年，居住占四成" },
+    { band: [30, 39], key: [30, 39],
+      marks: [[30, 39, "__H30SH__% → __H39SH__%", "30→39 岁 · 居住占比"]],
+      cap: "30–39 岁：房子一直在，教育开始加码" },
     { band: [40, 52], key: [46], dot: 46,
       marks: [[40, 52, "__PEAK__ 元", "46 岁前后 · 模型值"]],
-      cap: "高亮：40–52 岁，46 岁是最高点（模型值）" },
-    { band: [58, 85], key: [59, 64, 85],
-      marks: [[59, 64, "__D59_64__%", "59→64 岁 · 五年坡"], [83, 85, "__H85SH__%", "85 岁及以上 · 医疗"]],
-      cap: "高亮：58–85 岁；59→64 一段缓坡，85 岁医疗抬头" }
+      cap: "40–52 岁：46 岁是最高点（模型值）" },
+    { band: [50, 59], key: [50, 59],
+      marks: [[50, 59, "__D5059__%", "50→59 岁 · 空巢"]],
+      cap: "50–59 岁：孩子走了，总额只降一成" },
+    { band: [58, 69], key: [59, 64],
+      marks: [[59, 64, "__D59_64__%", "59→64 岁 · 五年坡"]],
+      cap: "58–69 岁：退休是一段五年的坡" },
+    { band: [70, 85], key: [85],
+      marks: [[70, 85, "85 岁医疗占 __H85SH__%", "70 岁以后"]],
+      cap: "70–85 岁：医疗抬头，占三成半" }
   ];
 
   var figcap = document.getElementById("figcap");
@@ -398,9 +415,19 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
     clearBand();
     while (gCall.firstChild) gCall.removeChild(gCall.firstChild);
 
+    if (st) {
+      var lo = st.band[0], hi = st.band[1];
+      var bx0 = ML + lo * STEP + 2, bx1 = ML + (hi + 1) * STEP - 2;
+      var topY = MT + PH;
+      for (var q = lo; q <= hi; q++) topY = Math.min(topY, y(TOT[q]));
+      topY = Math.max(MT - 6, topY - 12);
+      el("rect", { x: bx0, y: topY, width: bx1 - bx0, height: MT + PH - topY,
+        fill: "#F3EFE6", "fill-opacity": .55 }, gBand);
+    }
+
     for (var i = 0; i < N; i++) {
       var inBand = st ? (i >= st.band[0] && i <= st.band[1]) : true;
-      var isKey = st ? (!st.key || st.key.indexOf(AGES[i]) >= 0) : true;
+      var isKey = st ? (st.key ? st.key.indexOf(AGES[i]) >= 0 : false) : true;
       for (var c = 0; c < CATS.length; c++) {
         var r = rects[i][c];
         if (!r) continue;
@@ -409,11 +436,10 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
           if (isKey && st.strong) o = CATS[c].id === st.strong ? 1 : .45;
           else if (isKey) o = 1;
           else if (inBand) o = .92;
-          else o = .32;
+          else o = .24;
         }
         r.setAttribute("opacity", o);
       }
-      if (hatches[i]) hatches[i].setAttribute("opacity", st && st.hatch ? .95 : (st ? 0 : .45));
     }
 
     if (st) {
