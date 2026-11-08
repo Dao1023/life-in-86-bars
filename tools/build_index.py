@@ -74,6 +74,9 @@ def main() -> None:
         "__LTC__": num(d.get("meta", {}).get("medical_85_split", {}).get("home_care_addon", 0) or 0),
     }
 
+    # 展示口径：数据文件里的 meta.title 不动，注入时覆盖成对外标题
+    d.setdefault("meta", {})["title"] = "一个中国城市人的一生：0–85 岁逐年消费结构（以上海为例）"
+
     html = TPL.read_text(encoding="utf-8")
     payload = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     html = html.replace("/*__DATA__*/", payload)

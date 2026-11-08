@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>一个上海人的一生，每年要花多少钱</title>
+<title>一个中国城市人的一生，每年要花多少钱（以上海为例）</title>
 <link rel="icon" href="favicon.svg">
 <style>
 :root{
@@ -286,9 +286,9 @@ footer{margin-top:44px;border-top:1px solid var(--rule);padding:20px 0 0;font-si
 <div class="page">
 
   <header class="masthead">
-    <p class="kicker"><span>上海</span><span class="sep"></span><span>2024 年价</span><span class="sep"></span><span id="totalUnit">元 / 人 / 年</span></p>
-    <h1>一个上海人的一生，<br>每年要花多少钱</h1>
-    <p class="dek" id="dek">0–85 岁逐年消费结构 · 2024 年上海价 · 元/人/年</p>
+    <p class="kicker"><span>中国城市 · 以上海为例</span><span class="sep"></span><span>2024 年价</span><span class="sep"></span><span id="totalUnit">元 / 人 / 年</span></p>
+    <h1>一个中国城市人的一生，<br>每年要花多少钱</h1>
+    <p class="dek" id="dek">0–85 岁逐年消费结构 · 2024 年价 · 元/人/年</p>
     <p class="lede" id="lede">从出生到 85 岁及以上，我们把每一年拆成八类支出，拼成 86 根柱子。模型里最贵的不是养娃那几年，是四十几岁那一段。</p>
     <p class="verdict" id="verdict">—</p>
     <p class="hh-warn" id="hhWarn" hidden>口径提醒：这一视图的户构成是按<b>标准家庭生命周期构造</b>的（一人户约 11%，七普上海实际约 28%），<b>水平与形状都不代表上海真实的户分布，仅作情景</b>。加权户均 <span id="hwWm">—</span> 元，对锚点 <span id="hwAnc">—</span> 元偏 <span id="hwDev">—</span>%。</p>
@@ -1770,7 +1770,7 @@ footer{margin-top:44px;border-top:1px solid var(--rule);padding:20px 0 0;font-si
     var t = RAW.total;
     var mn = 0, mx = 0;
     for (var i = 1; i < N; i++) { if (t[i] < t[mn]) mn = i; if (t[i] > t[mx]) mx = i; }
-    return (isHH() ? '上海家庭按户主年龄的消费结构' : '一个上海人的一生，每年要花多少钱') +
+    return (isHH() ? '上海家庭按户主年龄的消费结构（中国城市·以上海为例）' : '一个中国城市人的一生，每年要花多少钱（以上海为例）') +
       '。' + AGES[0] + ' 到 ' + AGES[N - 1] + ' 岁共 ' + N + ' 根堆叠柱，每根按 8 类支出堆叠，单位' + UNIT + '。' +
       '最高的是 ' + AGES[mx] + ' 岁 ' + fmt(t[mx]) + ' 元，最低的是 ' + AGES[mn] + ' 岁 ' + fmt(t[mn]) + ' 元。' +
       (isHH() ? '' : '0–17 岁为家庭代付口径。') + '可用表格视图逐格读取，或用 Tab 聚焦每根柱子。';
@@ -1778,13 +1778,13 @@ footer{margin-top:44px;border-top:1px solid var(--rule);padding:20px 0 0;font-si
 
   function updateCopy() {
     if (isHH()) {
-      $('#dek').textContent = '22–85 岁户主年龄 · 2024 年上海价 · 元/户/年';
+      $('#dek').textContent = '22–85 岁户主年龄 · 2024 年价 · 元/户/年';
       $('#lede').textContent = '换一种算法：把一户人家一整年的开销按户主年龄排开。孩子长大时户均最高，子女离家后掉下来，退休再掉一次。';
       $('#fig-h').textContent = '按户主年龄的家庭年支出堆叠柱图';
       $('#figcap').innerHTML = '每户口径：横轴是<b>户主年龄</b>，柱高是一户人家一年的总支出（元/户/年）。' +
         '家庭规模随户主年龄先升后降，所以每户曲线与人均曲线形状不同；本口径没有「家庭代付」标记，因为它本来就是全家花掉的钱。';
     } else {
-      $('#dek').textContent = '0–85 岁逐年消费结构 · 2024 年上海价 · 元/人/年';
+      $('#dek').textContent = '0–85 岁逐年消费结构 · 2024 年价 · 元/人/年';
       $('#lede').textContent = '模型里最贵的不是养娃那几年，是四十几岁那一段。';
       $('#fig-h').textContent = '0–85 岁逐年消费结构堆叠柱图';
       var t = RAW.total, ag = AGES;

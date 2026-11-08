@@ -214,6 +214,11 @@ def main() -> None:
     if PLACEHOLDER not in tpl:
         fail("模板里找不到占位符 " + PLACEHOLDER)
 
+    # 展示口径（v5）：data/ 里的 meta.title 仍是旧标题，只在注入时覆盖，数据文件一个字节不动
+    data["meta"]["title"] = "一个中国城市人的一生：0–85 岁逐年消费结构（以上海为例）"
+    if household:
+        household["meta"]["title"] = "上海家庭（中国城市·以上海为例）：户主年龄消费结构"
+
     payload_obj = {"person": data, "household": household, "sens": sens}
     payload = json.dumps(payload_obj, ensure_ascii=False, separators=(",", ":"))
     payload = payload.replace("</", "<\\/")

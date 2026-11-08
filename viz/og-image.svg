@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 <rect width="1200" height="630" fill="#FAF8F4"/>
-<text x="76.0" y="75.8" font-family="Microsoft YaHei, sans-serif" font-size="15" fill="#8A8378" text-anchor="start">上海 · 2024 年价 · 元 / 人 / 年</text>
-<text x="76.0" y="146.3" font-family="Noto Serif SC, Songti SC, serif" font-size="46" font-weight="700" fill="#191817" text-anchor="start">一个上海人的一生，</text>
-<text x="76.0" y="206.3" font-family="Noto Serif SC, Songti SC, serif" font-size="46" font-weight="700" fill="#191817" text-anchor="start">每年要花多少钱</text>
+<text x="76.0" y="75.8" font-family="Microsoft YaHei, sans-serif" font-size="15" fill="#8A8378" text-anchor="start">以上海为例 · 一线城市平均 · 2024 年价</text>
+<text x="76.0" y="146.3" font-family="Noto Serif SC, Songti SC, serif" font-size="46" font-weight="700" fill="#191817" text-anchor="start">一个中国城市人，</text>
+<text x="76.0" y="206.3" font-family="Noto Serif SC, Songti SC, serif" font-size="46" font-weight="700" fill="#191817" text-anchor="start">一生要花多少钱</text>
 <line x1="76.0" y1="246.0" x2="140.0" y2="246.0" stroke="#191817" stroke-width="2"/>
-<text x="76.0" y="281.6" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#6E675C" text-anchor="start">0–85 岁 · 8 类消费 · 上海 2024 年价</text>
+<text x="76.0" y="281.6" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#6E675C" text-anchor="start">0–85 岁 · 8 类消费 · 元 / 人 / 年</text>
 <text x="74.0" y="405.4" font-family="Noto Serif SC, Songti SC, serif" font-size="82" font-weight="700" fill="#191817" text-anchor="start">64,415</text>
 <text x="329.0" y="400.7" font-family="Microsoft YaHei, sans-serif" font-size="16" fill="#6E675C" text-anchor="start">元 / 人 / 年</text>
 <text x="76.0" y="458.7" font-family="Microsoft YaHei, sans-serif" font-size="16" fill="#6E675C" text-anchor="start">46 岁前后，一年的人均消费</text>
@@ -701,5 +701,5 @@
 <line x1="929.3" y1="170.2" x2="929.3" y2="138.2" stroke="#191817" stroke-width="1.2"/>
 <circle cx="929.3" cy="134.2" r="3.20" fill="#191817"/>
 <text x="929.3" y="120.3" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#6E675C" text-anchor="middle">最贵</text>
-<text x="1124.0" y="598.1" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#8A8378" text-anchor="end">数据：上海 2024 城镇人均消费 54,980｜模型估算，非统计发布物</text>
+<text x="1124.0" y="598.1" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#8A8378" text-anchor="end">数据：上海 2024 城镇人均消费 54,980（全国城镇 34,557）｜模型估算，非统计发布物</text>
 </svg>

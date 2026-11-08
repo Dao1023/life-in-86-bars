@@ -130,6 +130,8 @@ def render_png(scene: Scene, path: Path, w=W, h=H, ss=SS):
                 y -= th
             dr.text((x * ss, y * ss - box[1]), s, font=f, fill=fill)
     img = img.resize((w, h), Image.LANCZOS) if ss != 1 else img
+    # 128 色 + 无抖动：卡片是平涂色块，量化后肉眼无差，体积从 ~102 KB 降到 ~35 KB
+    img = img.convert("RGB").quantize(colors=128, method=Image.MEDIANCUT, dither=Image.NONE)
     img.save(path, "PNG", optimize=True)
 
 
@@ -175,11 +177,11 @@ def build_og(d) -> Scene:
 
     # 左栏
     L = 76
-    sc.text(L, 62, "上海 · 2024 年价 · 元 / 人 / 年", "sans", 15, FAINT)
-    sc.text(L, 104, "一个上海人的一生，", "serif", 46, INK)
-    sc.text(L, 164, "每年要花多少钱", "serif", 46, INK)
+    sc.text(L, 62, "以上海为例 · 一线城市平均 · 2024 年价", "sans", 15, FAINT)
+    sc.text(L, 104, "一个中国城市人，", "serif", 46, INK)
+    sc.text(L, 164, "一生要花多少钱", "serif", 46, INK)
     sc.line(L, 246, L + 64, 246, INK, 2)
-    sc.text(L, 266, "0–85 岁 · 8 类消费 · 上海 2024 年价", "sans", 17, MUTED)
+    sc.text(L, 266, "0–85 岁 · 8 类消费 · 元 / 人 / 年", "sans", 17, MUTED)
 
     big = f"{int(d['peak_v'] + 0.5):,}"   # 四舍五入到整数（Python 默认 banker rounding 会把 .5 抹成 64,414）
     sc.text(L - 2, 330, big, "serif", 82, INK)
@@ -221,7 +223,7 @@ def build_og(d) -> Scene:
     sc.text(px, py - 70, "最贵", "sans", 11, MUTED, anchor="mt")
 
     # 右下角极小的来源行
-    sc.text(W - 76, 588, "数据：上海 2024 城镇人均消费 54,980｜模型估算，非统计发布物",
+    sc.text(W - 76, 588, "数据：上海 2024 城镇人均消费 54,980（全国城镇 34,557）｜模型估算，非统计发布物",
             "sans", 11, FAINT, anchor="rt")
     return sc
 

@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>一个上海人的一生，每年要花多少钱 · 86 根柱</title>
-<meta name="description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于上海 2024 官方总额与多国年龄曲线的估算模型。">
+<title>一个中国城市人，一生要花多少钱 · 86 根柱</title>
+<meta name="description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于中国城市（以上海为例）2024 官方总额与多国年龄曲线的估算模型。">
 <meta name="author" content="dao1023">
 <meta name="theme-color" content="#FAF8F4">
 <link rel="canonical" href="https://dao1023.github.io/life-in-86-bars/">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="一个上海人的一生">
+<meta property="og:site_name" content="一个中国城市人，一生要花多少钱">
 <meta property="og:url" content="https://dao1023.github.io/life-in-86-bars/">
-<meta property="og:title" content="一个上海人的一生，每年要花多少钱">
-<meta property="og:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于上海 2024 官方总额与多国年龄曲线的估算模型。">
+<meta property="og:title" content="一个中国城市人，一生要花多少钱">
+<meta property="og:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。基于中国城市（以上海为例）2024 官方总额与多国年龄曲线的估算模型。">
 <meta property="og:image" content="https://dao1023.github.io/life-in-86-bars/viz/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="一张堆叠柱状图：上海人 0–85 岁每年消费，中间高两头低">
+<meta property="og:image:alt" content="一张堆叠柱状图：中国城市人（以上海为例）0–85 岁每年消费，中间高两头低">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="一个上海人的一生，每年要花多少钱">
-<meta name="twitter:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。">
+<meta name="twitter:title" content="一个中国城市人，一生要花多少钱">
+<meta name="twitter:description" content="86 根柱子，一年一根：0 岁最省 31,540 元，四十几岁最贵 64,415 元。以上海为例。">
 <meta name="twitter:image" content="https://dao1023.github.io/life-in-86-bars/viz/og-image.png">
 <meta name="twitter:image:alt" content="86 根堆叠柱：中间高两头低，46 岁前后最高">
 
@@ -32,8 +32,8 @@
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Dataset",
- "name":"上海 2024 年分年龄消费结构（模型估算）",
- "description":"0–85 岁逐年、八类消费的模型估算：以上海 2024 年城镇人均消费 54,980 元与八大类总额为锚，年龄形状取自 CHIPS 2007、育娲育儿成本、BLS CE、日本家计调查等文献，非官方分年龄观测。",
+ "name":"一个中国城市人的一生：0–85 岁消费结构（以上海为例）",
+ "description":"0–85 岁逐年、八类消费的模型估算：以中国城市（以上海为例）2024 年城镇人均消费 54,980 元与八大类总额为锚，年龄形状取自 CHIPS 2007、育娲育儿成本、BLS CE、日本家计调查等文献，非官方分年龄观测。",
  "url":"https://dao1023.github.io/life-in-86-bars/",
  "creator":{"@type":"Person","name":"dao1023"},
  "datePublished":"2026-11-08",
@@ -67,6 +67,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset
 .hero h1{font-size:clamp(40px,6.4vw,88px);line-height:1.16;letter-spacing:.005em;margin:clamp(10px,1.6vh,20px) 0 0;text-wrap:nowrap}
 .assert{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.5vw,36px);line-height:1.5;margin:clamp(18px,3.4vh,40px) 0 0}
 .assert-sub{font-size:15px;color:var(--muted);margin:.55em 0 0;line-height:1.7}
+.scope{font-size:15px;color:#3A342C;margin:.7em 0 0;line-height:1.8;max-width:none}
 .nums{display:flex;align-items:flex-end;gap:clamp(20px,3.6vw,64px);margin-top:clamp(20px,3.6vh,44px);flex-wrap:wrap}
 .num{display:flex;flex-direction:column}
 .num b{font-family:var(--serif);font-weight:700;line-height:.94;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
@@ -149,10 +150,11 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
 <a class="skip" href="#story">跳到正文</a>
 
 <header class="hero">
-  <p class="kicker">上海 · 2024 年价 · 元/人/年 · 模型估算</p>
-  <h1>一个上海人的一生，<br>每年要花多少钱</h1>
+  <p class="kicker">以上海为例 · 一线城市平均 · 2024 年价 · 元/人/年</p>
+  <h1>一个中国城市人，<br>一生要花多少钱</h1>
   <p class="assert">最贵的那一段，不在养孩子</p>
   <p class="assert-sub">四十几岁的支出，比 0–17 岁高出五成。</p>
+  <p class="scope">以上海为例——它是中国数据最全的城市，人均支出约是全国城镇的 1.6 倍（54,980 对 34,557），与北京基本持平。</p>
   <div class="nums">
     <p class="num big"><b>__PEAK__</b><span>__PEAK_AGE__ 岁前后 · 一年的人均消费（元/人/年）</span></p>
     <p class="num small"><b>__TROUGH__</b><span>__TROUGH_AGE__ 岁 · 全生最省（元/人/年）</span></p>
@@ -166,7 +168,7 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
     <div class="figwrap">
       <figure class="fig" style="margin:0">
         <svg class="chart" id="chart" viewBox="0 0 820 620" role="img"
-             aria-label="上海 0 到 85 岁每年消费的堆叠柱状图：0 岁最低 __TROUGH__ 元，四十几岁最高 __PEAK__ 元，85 岁及以上医疗占比回升。">
+             aria-label="中国城市（以上海为例）0 到 85 岁每年消费的堆叠柱状图：0 岁最低 __TROUGH__ 元，四十几岁最高 __PEAK__ 元，85 岁及以上医疗占比回升。">
         </svg>
         <figcaption class="figcap" id="figcap">86 根柱子，一年一根 · 八类消费堆叠 · 元／人／年</figcaption>
         <div class="legend" id="legend"></div>
@@ -223,11 +225,11 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
   <div class="two">
     <div>
       <h2>这张图能说什么</h2>
-      <p class="q">「上海家庭一生支出的量级与形状——0–17 年从 3.1 万升到 4.7 万，成年平台 5.5–6.4 万，23 岁租房、退休后医疗抬头是真实台阶。」</p>
+      <p class="q">「形状——0–17 岁一路爬升、23 岁租房、四十几岁见顶、退休是五年的坡、老年医疗占三成半——在一线城市之间大体通用。」</p>
     </div>
     <div>
       <h2>不能说什么</h2>
-      <p class="q">「46 岁最贵（那是参数产物）、任何单年数字、85 岁医疗的精确值。」</p>
+      <p class="q">「这张图的<b>水平</b>是上海的锚点。换城市必须换总锚（北京 2024 城镇人均 53,214 元，全国城镇 34,557 元），<b>形状可以借，数字不能直接搬</b>。」</p>
     </div>
   </div>
 
@@ -251,7 +253,7 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
   </div>
 
   <footer>
-    上海 2024 城镇人均消费 54,980｜模型估算，非统计发布物｜数据与代码 MIT / CC BY
+    以上海为例（2024 城镇人均 54,980，全国城镇 34,557）｜模型估算，非统计发布物｜数据与代码 MIT / CC BY
   </footer>
 </section>
 </main>
@@ -296,7 +298,7 @@ footer{margin-top:clamp(40px,7vh,72px);border-top:1px solid var(--rule-2);paddin
   });
   el("text", { x: ML + PW, y: MT + PH + 19, "text-anchor": "end", "font-size": 11, fill: "#B3ABA0" }, gGrid).textContent = "岁";
   el("text", { x: ML - 2, y: 20, "font-size": 12.5, fill: "#726B60", "letter-spacing": .04 }, gGrid)
-    .textContent = "元／人／年 · 上海 2024 年价 · 模型估算";
+    .textContent = "元／人／年 · 以上海为例 · 2024 年价";
 
   /* 斜纹：0–17 家庭代付 */
   var defs = el("defs", {}, svg);
